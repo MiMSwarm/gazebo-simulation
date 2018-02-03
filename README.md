@@ -43,12 +43,9 @@ You should see a LiDAR that spins quite fast. To slow things down on the second 
 Change 2 to whatever speed you desire.
 
 #### Troubleshooting
-Now, there is an issue that might cause the build to fail with a message like,
+Now, there is an issue that might cause the build to fail with either of these messages,
 ```
 No rule to make target '/usr/lib/libblas.so', needed by 'vel'.  Stop.
-```
-or,
-```
 No rule to make target '/usr/lib/liblapack.so', needed by 'vel'.  Stop.
 ```
 
@@ -58,7 +55,7 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/libblas.so
 sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 ```
 
-> ***Do not run the above commands without properly verifying it does not overwrite a default setting (especially if you're not on Ubuntu 17.10, 64bit). I am not responsible for messing up your system.***
+> ***Do not run the above commands without properly verifying that it does not overwrite a pre-existing file or cause a broken link (especially if you're not on Ubuntu 17.10, 64bit). I am not responsible for messing up your system.***
 
 ## Documentation
 
@@ -68,21 +65,14 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 | ------------ | ----------------------------------------------- |
 | Synopsis     | Summary of work and currently planned progress. |
 | Seminar 1    | Presented for first review.                     |
-|              |                                                 |
 
 ### Reference Texts
 - Stephen Se, David Lowe, and Jim Little. Vision-based mobile robot localization and mapping using scale-invariant features. In Robotics and Automation, 2001. Proceedings 2001 ICRA. IEEE International Conference on, volume 2, pages 2051–2058. IEEE, 2001.
-
 - Joseph A Rothermich, M İhsan Ecemiş, and Paolo Gaudiano. Distributed localization and mapping with a robotic swarm. In International Workshop on Swarm Robotics, pages 58–69. Springer, 2004.
-
 - Sebastian Thrun and Yufeng Liu. Multi-robot slam with sparse extended information filers. Robotics Research, pages 254–266, 2005.
-
 - Andrew Howard, Lynne E Parker, and Gaurav S Sukhatme. The SDR experience: Experiments with a large-scale heterogeneous mobile robot team. In Experimental Robotics IX, pages 121–130. Springer, 2006.
-
 - Iñaki Navarro and Fernando Matı́a. An introduction to swarm robotics. ISRN Robotics, 2013, 2012.
-
 - Ying Tan and Zhong-yang Zheng. Research advance in swarm robotics. Defence Technology, 9(1):18–39, 2013.
-
 - Levent Bayındır. A review of swarm robotics tasks. Neurocomputing, 172:292–321. Elsevier, 2016.
 
 ### Reference Links
