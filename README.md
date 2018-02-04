@@ -1,16 +1,17 @@
 # MiniMappers
 
-#### Final Year Computer Science Project
+**Final Year Computer Science Project**  
 A SLAM implementation using Swarm Robotics for search and rescue.
 
 
 ## Requirements
-- Gazebo 9
+- Gazebo 9 available at http://gazebosim.org/
+- `libgazebo9-dev` package to build plugins.
 
 ## Tutorials
 
 ### Vehicle
-This is the beginner's tutorial for Gazebo. The model config and SDF are in ```tutorial/vehicle/spec```. To test the simulation run,
+This is the beginner's tutorial for Gazebo. The model config and SDF are in ```tutorial/vehicle/spec```. To test the simulation, run
 ```bash
 cd tutorial/vehicle/spec
 gazebo vehicle
@@ -19,24 +20,24 @@ gazebo vehicle
 ### Velodyne LiDAR
 This is the intermediate tutorial for Gazebo. `velodyne.world` contains the specification for the world. `model` contains the 3D model for the LiDAR (including meshes). `velodyne_plugin.cc` is a plugin that allows the upper section of the LiDAR to rotate. `vel.cc` allows you to dynamically specify the speed of rotation.
 
-To test the simulation, copy the model files so that gazebo recognizes the model without any extra effort.
+To test the simulation, copy the model files to `~/.gazebo/models/` so that gazebo recognizes the model without any extra effort.
 ```bash
-mkdir -p ~/.gazebo/models/velodyne_hdl32
-cd tutorial/velodyne
-cp -r model/* velodyne_hdl32
+mkdir -p ~/.gazebo/models/velodyne_hdl32/
+cd tutorial/velodyne/
+cp -r model/* velodyne_hdl32/
 ```
 Next up, you need to build the plugin and the test code.
 ```bash
-mkdir build
-cd build
+mkdir build/
+cd build/
 cmake ..
 make
 ```
-Now to run the code, you'll need to open two terminals. Make sure you're in the `tutorial/velodyne/build` folder in both terminals. Then, on the first terminal run,
+Now to run the code, you'll need to open two terminals. Make sure you're in the `tutorial/velodyne/build` folder in both terminals. Then, on the first terminal, run
 ```bash
 gazebo --verbose ../velodyne.world
 ```
-You should see a LiDAR that spins quite fast. To slow things down on the second terminal run,
+You should see a LiDAR that spins quite fast. To slow things down, on the second terminal run,
 ```bash
 ./vel 2
 ```
