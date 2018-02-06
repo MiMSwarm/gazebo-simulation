@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="icy_interior">
+
+    <static>true</static>
+
+    <!-- Wall A. -->
+    <link name="A">
+      <pose>3.75 3 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="a_col">
+        <geometry>
+          <box>
+            <size>2.5 0.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="a_vis">
+        <geometry>
+          <box>
+            <size>2.5 0.2 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall B. -->
+    <link name="B">
+      <pose>3.75 -3 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="b_col">
+        <geometry>
+          <box>
+            <size>2.5 0.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="b_vis">
+        <geometry>
+          <box>
+            <size>2.5 0.2 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall C. (y is not exactly 2.5 to offset for the wall width) -->
+    <link name="C">
+      <pose>2.5 2.55 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="c_col">
+        <geometry>
+          <box>
+            <size>0.2 1.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="c_vis">
+        <geometry>
+          <box>
+            <size>0.2 1.1 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall D. (y is not exactly 2.5 to offset for the wall width) -->
+    <link name="D">
+      <pose>2.5 -2.55 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="d_col">
+        <geometry>
+          <box>
+            <size>0.2 1.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="d_vis">
+        <geometry>
+          <box>
+            <size>0.2 1.1 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Cylinder E. -->
+    <link name="E">
+      <pose>0 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="e_col">
+        <geometry>
+          <cylinder>
+            <radius>1.25</radius>
+            <length>2</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="e_vis">
+        <geometry>
+          <cylinder>
+            <radius>1.25</radius>
+            <length>2</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall F. -->
+    <link name="F">
+      <pose>-0.5 4 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>7 0.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>7 0.2 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall G. -->
+    <link name="G">
+      <pose>-0.5 -4 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>7 0.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>7 0.2 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Wall H. -->
+    <link name="H">
+      <pose>-4 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>0.2 8.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>0.2 8.2 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Block I. -->
+    <link name="I">
+      <pose>4.25 -1.5 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="i_col">
+        <geometry>
+          <box>
+            <size>1.5 1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="i_vis">
+        <geometry>
+          <box>
+            <size>1.5 1 2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+
+
+  </model>
+</sdf>
