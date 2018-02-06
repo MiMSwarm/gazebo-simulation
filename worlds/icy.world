@@ -7,14 +7,9 @@
       <uri>model://sun</uri>
     </include>
 
-    <!-- A ground plane -->
+    <!-- Icy Room -->
     <include>
-      <uri>model://ground_plane</uri>
-    </include>
-
-    <!-- Outer walls -->
-    <include>
-      <uri>model://outer_walls</uri>
+      <uri>model://icy_exterior</uri>
     </include>
 
     <!-- Icy Interior -->

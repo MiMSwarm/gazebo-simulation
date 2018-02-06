@@ -1,12 +1,41 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <sdf version="1.6">
-
-  <!-- Four walls to form the base section of the map. -->
-  <model name="outer_walls">
+  <model name="icy_exterior">
 
     <static>true</static>
 
-    <!-- Left Wall. -->
+    <link name="floor">
+      <collision name="floor_col">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>10 10</size>
+          </plane>
+        </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>0xffff</collide_bitmask>
+          </contact>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="floor_vis">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>10 10</size>
+          </plane>
+        </geometry>
+      </visual>
+    </link>
+
+        <!-- Left Wall. -->
     <link name="wall_left">
       <pose>0 -4.95 1 0 0 0</pose>
       <must_be_base_link>true</must_be_base_link>
@@ -109,6 +138,6 @@
         </geometry>
       </visual>
     </link>
-  </model>
 
+  </model>
 </sdf>

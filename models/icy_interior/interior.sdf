@@ -11,14 +11,14 @@
       <collision name="a_col">
         <geometry>
           <box>
-            <size>2.5 0.2 2</size>
+            <size>2.5 0.1 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="a_vis">
         <geometry>
           <box>
-            <size>2.5 0.2 2</size>
+            <size>2.5 0.1 2</size>
           </box>
         </geometry>
       </visual>
@@ -31,14 +31,14 @@
       <collision name="b_col">
         <geometry>
           <box>
-            <size>2.5 0.2 2</size>
+            <size>2.5 0.1 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="b_vis">
         <geometry>
           <box>
-            <size>2.5 0.2 2</size>
+            <size>2.5 0.1 2</size>
           </box>
         </geometry>
       </visual>
@@ -46,19 +46,19 @@
 
     <!-- Wall C. (y is not exactly 2.5 to offset for the wall width) -->
     <link name="C">
-      <pose>2.5 2.55 1 0 0 0</pose>
+      <pose>2.5 2.525 1 0 0 0</pose>
       <must_be_base_link>true</must_be_base_link>
       <collision name="c_col">
         <geometry>
           <box>
-            <size>0.2 1.1 2</size>
+            <size>0.1 1.05 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="c_vis">
         <geometry>
           <box>
-            <size>0.2 1.1 2</size>
+            <size>0.1 1.05 2</size>
           </box>
         </geometry>
       </visual>
@@ -66,19 +66,19 @@
 
     <!-- Wall D. (y is not exactly 2.5 to offset for the wall width) -->
     <link name="D">
-      <pose>2.5 -2.55 1 0 0 0</pose>
+      <pose>2.5 -2.525 1 0 0 0</pose>
       <must_be_base_link>true</must_be_base_link>
       <collision name="d_col">
         <geometry>
           <box>
-            <size>0.2 1.1 2</size>
+            <size>0.1 1.05 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="d_vis">
         <geometry>
           <box>
-            <size>0.2 1.1 2</size>
+            <size>0.1 1.05 2</size>
           </box>
         </geometry>
       </visual>
@@ -113,14 +113,14 @@
       <collision name="f_col">
         <geometry>
           <box>
-            <size>7 0.2 2</size>
+            <size>7 0.1 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="f_vis">
         <geometry>
           <box>
-            <size>7 0.2 2</size>
+            <size>7 0.1 2</size>
           </box>
         </geometry>
       </visual>
@@ -133,14 +133,14 @@
       <collision name="f_col">
         <geometry>
           <box>
-            <size>7 0.2 2</size>
+            <size>7 0.1 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="f_vis">
         <geometry>
           <box>
-            <size>7 0.2 2</size>
+            <size>7 0.1 2</size>
           </box>
         </geometry>
       </visual>
@@ -153,14 +153,14 @@
       <collision name="f_col">
         <geometry>
           <box>
-            <size>0.2 8.2 2</size>
+            <size>0.1 8.1 2</size>
           </box>
         </geometry>
       </collision>
       <visual name="f_vis">
         <geometry>
           <box>
-            <size>0.2 8.2 2</size>
+            <size>0.1 8.1 2</size>
           </box>
         </geometry>
       </visual>
@@ -185,8 +185,6 @@
         </geometry>
       </visual>
     </link>
-
-
 
   </model>
 </sdf>

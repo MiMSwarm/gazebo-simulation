@@ -9,4 +9,4 @@ case "${GAZEBO_MODEL_PATH:=$MODEL_PATH}" in
     *) export GAZEBO_MODEL_PATH="$MODEL_PATH:$GAZEBO_MODEL_PATH" ;;
 esac
 
-gazebo maze.world --verbose
+gazebo worlds/icy.world --verbose
