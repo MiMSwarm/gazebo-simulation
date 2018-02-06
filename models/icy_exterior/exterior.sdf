@@ -32,6 +32,12 @@
             <size>10 10</size>
           </plane>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -52,6 +58,12 @@
             <size>10 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -72,6 +84,12 @@
             <size>10 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -92,6 +110,12 @@
             <size>0.1 10 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -114,6 +138,12 @@
             <size>0.1 4 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -136,6 +166,12 @@
             <size>0.1 4 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 

@@ -21,6 +21,12 @@
             <size>2.5 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -41,6 +47,12 @@
             <size>2.5 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -61,6 +73,12 @@
             <size>0.1 1.05 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -81,6 +99,12 @@
             <size>0.1 1.05 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -103,6 +127,12 @@
             <length>2</length>
           </cylinder>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -123,6 +153,12 @@
             <size>7 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -143,6 +179,12 @@
             <size>7 0.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -163,6 +205,12 @@
             <size>0.1 8.1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
       </visual>
     </link>
 
@@ -183,6 +231,87 @@
             <size>1.5 1 2</size>
           </box>
         </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 1 -->
+    <link name="R1">
+      <pose>-0.95 4.45 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r1_col">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r1_vis">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 2 -->
+    <link name="R2">
+      <pose>-0.95 -4.45 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r2_col">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r2_vis">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 3 -->
+    <link name="R3">
+      <pose>-4.45 0 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r3_col">
+        <geometry>
+          <box>
+            <size>1.1 8.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r3_vis">
+        <geometry>
+          <box>
+            <size>1.1 8.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
       </visual>
     </link>
 
