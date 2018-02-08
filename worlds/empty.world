@@ -1,20 +1,22 @@
 <?xml version="1.0"?>
+
+<!-- To test a single robot -->
 <sdf version="1.6">
-  <world name="icy_world">
+  <world name="empty_world">
 
     <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
     </include>
 
-    <!-- Icy Room -->
+    <!-- A ground plane -->
     <include>
-      <uri>model://icy_exterior</uri>
+      <uri>model://ground_plane</uri>
     </include>
 
-    <!-- Icy Interior -->
+    <!-- Cool robot -->
     <include>
-      <uri>model://icy_interior</uri>
+      <uri>model://minimapper</uri>
     </include>
 
   </world>

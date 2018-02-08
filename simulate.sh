@@ -14,4 +14,4 @@ case "${GAZEBO_RESOURCE_PATH:=$BASE_PATH}" in
         ;;
 esac
 
-gazebo worlds/icy.world --verbose
+gazebo worlds/empty.world --verbose

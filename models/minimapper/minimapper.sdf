@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="minimapper">
+
+    <!-- Body of the MM -->
+    <link name="chasis">
+      <pose>0 0 0.055 0 0 0</pose>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.00052</ixx>
+          <iyy>0.00080</iyy>
+          <izz>0.00100</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="mm_col">
+        <geometry>
+          <box><size>0.16 0.12 0.08</size></box>
+        </geometry>
+      </collision>
+      <visual name="mm_vis">
+        <geometry>
+          <box><size>0.16 0.12 0.08</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Front Right Wheel of the MM and joint. -->
+    <link name="wheel_fr">
+      <pose>0.035 0.075 0.03 1.5707 0 0</pose>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="fr_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="fr_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="fr_joint" type="revolute">
+      <parent>chasis</parent>
+      <child>wheel_fr</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <!-- Front Left Wheel of the MM and joint. -->
+    <link name="wheel_fl">
+      <pose>0.035 -0.07 0.03 1.5707 0 0</pose>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="fl_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="fl_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="fl_joint" type="revolute">
+      <parent>chasis</parent>
+      <child>wheel_fl</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+      </axis>
+    </joint>
+
+
+    <!-- Rear Right Wheel of the MM and joint. -->
+    <link name="wheel_rr">
+      <pose>-0.035 0.075 0.03 1.5707 0 0</pose>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="rr_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="rr_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="rr_joint" type="revolute">
+      <parent>chasis</parent>
+      <child>wheel_rr</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+      </axis>
+    </joint>
+
+
+    <!-- Rear Left Wheel of the MM and joint. -->
+    <link name="wheel_rl">
+      <pose>-0.035 -0.07 0.03 1.5707 0 0</pose>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="rl_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="rl_col">
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="rl_joint" type="revolute">
+      <parent>chasis</parent>
+      <child>wheel_rl</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+      </axis>
+    </joint>
+
+  </model>
+</sdf>
