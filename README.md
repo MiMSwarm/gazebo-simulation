@@ -22,7 +22,7 @@ Then edit the `WORLD` variable in `simulate.sh` to either `test.world` or `icy.w
 $ ./simulate.sh
 ```
 
-> If the simulator does not shut down even after closing it from the GUI, press Ctrl-C to send the `SIGINT` signal.
+> If the simulator does not shut down after closing the GUI, press `ctrl-c` to send the `SIGINT` signal.
 
 ## Tutorials
 
