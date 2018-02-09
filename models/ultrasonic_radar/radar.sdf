@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="ultrasonic_radar">
+
+    <!-- Shaft for the Radar -->
+    <link name="shaft">
+      <pose>0 0 0.0225 0 0 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1.89e-6</ixx>
+          <iyy>1.89e-6</iyy>
+          <izz>4.05e-7</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="sh_col">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.045</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="sh_vis">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.045</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Radar module -->
+    <link name="radar">
+      <pose>0 0 0.055 0 0 0</pose>
+      <inertial>
+        <mass>0.015</mass>
+        <inertia>
+          <ixx>2.5e-6</ixx>
+          <iyy>1.0e-6</iyy>
+          <izz>2.5e-6</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="rd_col">
+        <geometry>
+          <box><size>0.02 0.04 0.02 0 0 0</size></box>
+        </geometry>
+      </collision>
+      <visual name="rd_vis">
+        <geometry>
+          <box><size>0.02 0.04 0.02 0 0 0</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Joint -->
+    <joint name="rd_joint" type="revolute">
+      <parent>shaft</parent>
+      <child>radar</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+        <limit>
+          <lower>-1.309</lower>
+          <upper>1.309</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <!-- Eyes -->
+    <link name="eye_left">
+      <pose>0.0175 0.010 0.055 0 1.5708 3.1416</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1.71e-6</ixx>
+          <iyy>1.71e-6</iyy>
+          <izz>4.50e-8</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="sh_col">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.015</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="sh_vis">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.015</length>
+          </cylinder>
+        </geometry>
+      </visual>
+
+      <!-- The actual ultrasonic sensor -->
+      <sensor name="ultrasonic" type="sonar">
+        <visualize>1</visualize>
+        <sonar>
+          <min>0.02</min>
+          <max>5.00</max>
+          <radius>1.2941</radius>
+        </sonar>
+      </sensor>
+    </link>
+
+    <joint name="el_joint" type="fixed">
+      <parent>radar</parent>
+      <child>eye_left</child>
+    </joint>
+
+    <link name="eye_right">
+      <pose>0.0175 -0.010 0.055 0 1.5708 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1.71e-6</ixx>
+          <iyy>1.71e-6</iyy>
+          <izz>4.50e-8</izz>
+          <ixy>0</ixy>
+          <iyz>0</iyz>
+          <ixz>0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="sh_col">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.015</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="sh_vis">
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.015</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="er_joint" type="fixed">
+      <parent>radar</parent>
+      <child>eye_right</child>
+    </joint>
+
+  </model>
+</sdf>

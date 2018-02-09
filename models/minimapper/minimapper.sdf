@@ -8,9 +8,9 @@
       <inertial>
         <mass>0.3</mass>
         <inertia>
-          <ixx>0.00052</ixx>
-          <iyy>0.00080</iyy>
-          <izz>0.00100</izz>
+          <ixx>5.2e-5</ixx>
+          <iyy>8.0e-4</iyy>
+          <izz>1.0e-3</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
@@ -30,13 +30,13 @@
 
     <!-- Front Right Wheel of the MM and joint. -->
     <link name="wheel_fr">
-      <pose>0.035 0.075 0.03 1.5707 0 0</pose>
+      <pose>0.035 0.075 0.03 1.5708 0 0</pose>
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>0.000150</ixx>
-          <iyy>0.000150</iyy>
-          <izz>0.000225</izz>
+          <ixx>1.50e-4</ixx>
+          <iyy>1.50e-4</iyy>
+          <izz>2.25e-4</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
@@ -71,13 +71,13 @@
 
     <!-- Front Left Wheel of the MM and joint. -->
     <link name="wheel_fl">
-      <pose>0.035 -0.07 0.03 1.5707 0 0</pose>
+      <pose>0.035 -0.07 0.03 1.5708 0 0</pose>
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>0.000150</ixx>
-          <iyy>0.000150</iyy>
-          <izz>0.000225</izz>
+          <ixx>1.50e-4</ixx>
+          <iyy>1.50e-4</iyy>
+          <izz>2.25e-4</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
@@ -113,13 +113,13 @@
 
     <!-- Rear Right Wheel of the MM and joint. -->
     <link name="wheel_rr">
-      <pose>-0.035 0.075 0.03 1.5707 0 0</pose>
+      <pose>-0.035 0.075 0.03 1.5708 0 0</pose>
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>0.000150</ixx>
-          <iyy>0.000150</iyy>
-          <izz>0.000225</izz>
+          <ixx>1.50e-4</ixx>
+          <iyy>1.50e-4</iyy>
+          <izz>2.25e-4</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
@@ -155,13 +155,13 @@
 
     <!-- Rear Left Wheel of the MM and joint. -->
     <link name="wheel_rl">
-      <pose>-0.035 -0.07 0.03 1.5707 0 0</pose>
+      <pose>-0.035 -0.07 0.03 1.5708 0 0</pose>
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>0.000150</ixx>
-          <iyy>0.000150</iyy>
-          <izz>0.000225</izz>
+          <ixx>1.50e-4</ixx>
+          <iyy>1.50e-4</iyy>
+          <izz>2.25e-4</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
@@ -193,6 +193,17 @@
         <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
+  
+  <!-- Ultrasonic Radar -->
+  <include>
+    <uri>model://ultrasonic_radar</uri>
+    <pose>0.04 0 0.095 0 0 0</pose>
+  </include>
+
+  <joint name="ur_joint" type="fixed">
+    <parent>chasis</parent>
+    <child>ultrasonic_radar::shaft</child>
+  </joint>
 
   </model>
 </sdf>
