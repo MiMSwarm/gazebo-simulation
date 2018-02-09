@@ -9,9 +9,9 @@ A SLAM implementation using Swarm Robotics for search and rescue.
 - `libgazebo9-dev` package to build plugins.
 
 ## Testing
-There are two worlds implemented so far,
-1. `test.world`, an empty world with a swarm of MiniMappers, and
-2. `icy.world`, a maze with a swarm of MiniMappers.
+There are two worlds implemented so far, each of which contain a few static MiniMappers for illustration.
+1. `test.world` — an empty world with a swarm of MiniMappers, and
+2. `icy.world` — a maze with a swarm of MiniMappers.
 
 First, ensure that `simulate.sh` has execute permissions,
 ```sh
@@ -91,7 +91,7 @@ $ sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 - Iñaki Navarro and Fernando Matı́a. An introduction to swarm robotics. ISRN Robotics, 2013, 2012.
 - Ying Tan and Zhong-yang Zheng. Research advance in swarm robotics. Defence Technology, 9(1):18–39, 2013.
 - Levent Bayındır. A review of swarm robotics tasks. Neurocomputing, 172:292–321. Elsevier, 2016.
-- Marius Valerian Paulet, Andrei Salceanu and Oana Maria Neacsu. Ultrasonic radar. In Electrical and Power Engineering (EPE), 2016 International Conference and Exposition on, pages 551-554. IEEE, 2016.
+- Marius Valerian Paulet, Andrei Salceanu and Oana Maria Neacsu. Ultrasonic radar. In Electrical and Power Engineering (EPE), 2016 International Conference and Exposition on, pages 551–554. IEEE, 2016.
 
 
 ### Reference Links
