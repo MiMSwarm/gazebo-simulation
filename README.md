@@ -8,38 +8,54 @@ A SLAM implementation using Swarm Robotics for search and rescue.
 - Gazebo 9 available at http://gazebosim.org/
 - `libgazebo9-dev` package to build plugins.
 
+## Testing
+There are two worlds implemented so far,
+1. `test.world`, an empty world with a swarm of MiniMappers, and
+2. `icy.world`, a maze with a swarm of MiniMappers.
+
+First, ensure that `simulate.sh` has execute permissions,
+```sh
+$ chmod u+x simulate.sh
+```
+Then edit the `WORLD` variable in `simulate.sh` to either `test.world` or `icy.world`. Execute `simulate.sh`.
+```sh
+$ ./simulate.sh
+```
+
+> If the simulator does not shut down even after closing it from the GUI, press Ctrl-C to send the `SIGINT` signal.
+
 ## Tutorials
 
 ### Vehicle
 This is the beginner's tutorial for Gazebo. The model config and SDF are in ```tutorial/vehicle/spec```. To test the simulation, run
-```bash
-cd tutorial/vehicle/spec
-gazebo vehicle
+```sh
+$ cd tutorial/vehicle/spec
+$ gazebo vehicle
 ```
 
 ### Velodyne LiDAR
 This is the intermediate tutorial for Gazebo. `velodyne.world` contains the specification for the world. `model` contains the 3D model for the LiDAR (including meshes). `velodyne_plugin.cc` is a plugin that allows the upper section of the LiDAR to rotate. `vel.cc` allows you to dynamically specify the speed of rotation.
 
 To test the simulation, copy the model files to `~/.gazebo/models/` so that gazebo recognizes the model without any extra effort.
-```bash
-mkdir -p ~/.gazebo/models/velodyne_hdl32/
-cd tutorial/velodyne/
-cp -r model/* velodyne_hdl32/
+```sh
+$ mkdir -p ~/.gazebo/models/velodyne_hdl32/
+$ cd tutorial/velodyne/
+$ cp -r model/* velodyne_hdl32/
 ```
 Next up, you need to build the plugin and the test code.
-```bash
-mkdir build/
-cd build/
-cmake ..
-make
+```sh
+$ mkdir build/
+$ cd build/
+$ cmake ..
+$ make
 ```
 Now to run the code, you'll need to open two terminals. Make sure you're in the `tutorial/velodyne/build` folder in both terminals. Then, on the first terminal, run
-```bash
-gazebo --verbose ../velodyne.world
+```sh
+$ gazebo --verbose ../velodyne.world
 ```
 You should see a LiDAR that spins quite fast. To slow things down, on the second terminal run,
-```bash
-./vel 2
+```sh
+$ ./vel 2
 ```
 Change 2 to whatever speed you desire.
 
@@ -51,9 +67,9 @@ No rule to make target '/usr/lib/liblapack.so', needed by 'vel'.  Stop.
 ```
 
 If this is the case ensure you have the BLAS and LAPACK libraries installed and a symlink to the libraries exists in `/usr/lib`. On Ubuntu, these packages are `libblas-dev` and `liblapack-dev`. On Ubuntu 17.10 (64bit), the symlinks can be constructed by running,
-```bash
-sudo ln -s /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/libblas.so
-sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
+```sh
+$ sudo ln -s /usr/lib/x86_64-linux-gnu/libblas.so /usr/lib/libblas.so
+$ sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 ```
 
 > ***Do not run the above commands without properly verifying that it does not overwrite a pre-existing file or cause a broken link (especially if you're not on Ubuntu 17.10, 64bit). I am not responsible for messing up your system.***
@@ -75,6 +91,9 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 - Iñaki Navarro and Fernando Matı́a. An introduction to swarm robotics. ISRN Robotics, 2013, 2012.
 - Ying Tan and Zhong-yang Zheng. Research advance in swarm robotics. Defence Technology, 9(1):18–39, 2013.
 - Levent Bayındır. A review of swarm robotics tasks. Neurocomputing, 172:292–321. Elsevier, 2016.
+- Marius Valerian Paulet, Andrei Salceanu and Oana Maria Neacsu. Ultrasonic radar. In Electrical and Power Engineering (EPE), 2016 International Conference and Exposition on, pages 551-554. IEEE, 2016.
+
 
 ### Reference Links
 - [Gazebo Tutorials](http://gazebosim.org/tutorials/browse)
+- [HC-SR04 Data Sheet](http://centmesh.csc.ncsu.edu/ff_drone_f14_finals/Sensor1/files/hcsr04.pdf) on [CentMesh](http://centmesh.csc.ncsu.edu/)

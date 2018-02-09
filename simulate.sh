@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# World to use. Uncomment the second line to use test.world.
+WORLD="icy.world"
+# WORLD="test.world"
+
 # Path to models.
 BASE_PATH=$(pwd)
 MODEL_PATH=$(pwd)/models
@@ -14,4 +18,4 @@ case "${GAZEBO_RESOURCE_PATH:=$BASE_PATH}" in
         ;;
 esac
 
-gazebo worlds/icy.world --verbose
+gazebo worlds/$WORLD --verbose
