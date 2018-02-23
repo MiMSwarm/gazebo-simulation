@@ -82,7 +82,7 @@ namespace gazebo {
         /// \brief Pointer to the model.
         physics::ModelPtr model;
 
-        /// \brief POinter to the joint.
+        /// \brief Pointer to the joint.
         physics::JointPtr joint;
 
         /// \brief A PID controller for the joint.

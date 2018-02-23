@@ -6,23 +6,39 @@ A SLAM implementation using Swarm Robotics for search and rescue.
 
 ## Requirements
 - Gazebo 9 available at http://gazebosim.org/
+
+### For building the plugins.
+- `gcc` (tested on 7.2.0)
+- `pkg-config`
 - `libgazebo9-dev` package to build plugins.
 
 ## Testing
-There are two worlds implemented so far, each of which contain a few static MiniMappers for illustration.
-1. `test.world` — an empty world with a swarm of MiniMappers, and
-2. `icy.world` — a maze with a swarm of MiniMappers.
+There are two kinds of worlds being implemented, one for testing core components and one for the demonstration in college. The testing worlds are,
+1. `sonar_setup_test.world` to test the sonar structure.
+2. `model_setup_test.world` to test the model structure.
+3. `sonar_check_test.world` to test the sonar mounted on the model.
+The worlds designed for demonstration are,
+1. `icy.world` — an ice-themed maze with a swarm of MiniMappers.
 
-First, ensure that `simulate.sh` has execute permissions,
+To test the simulations, you'll need to build the plugins. So first run,
+```sh
+$ make
+```
+
+Once the plugins have built, ensure `simulate.sh` has execute permissions and then run the script. Pass the world to render as the argument without `.world`.
 ```sh
 $ chmod u+x simulate.sh
-```
-Then edit the `WORLD` variable in `simulate.sh` to either `test.world` or `icy.world`. Execute `simulate.sh`.
-```sh
-$ ./simulate.sh
+$ ./simulate.sh model_setup_test
 ```
 
-> If the simulator does not shut down after closing the GUI, press `ctrl-c` to send the `SIGINT` signal.
+The simulator should shut down after closing the Gazebo client (GUI). If the gazebo server isn't shutting down. Press `ctrl-c` to send the `SIGINT` signal to the server. To check if the server has shut down, run
+```sh
+$ ps -ax | grep "gzserver" | grep -v grep
+```
+If the server is still running, `kill` it.
+```sh
+$ kill $(ps ax | grep "sleep" | grep -v grep | awk '{print $1;}')
+```
 
 ## Tutorials
 

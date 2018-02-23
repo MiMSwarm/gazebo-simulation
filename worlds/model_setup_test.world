@@ -14,7 +14,7 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <!-- Cool robot -->
+    <!-- Cool robots -->
     <include>
       <uri>model://minimapper</uri>
     </include>

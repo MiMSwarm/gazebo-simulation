@@ -1,72 +1,80 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <model name="ultrasonic_radar">
+  <model name="sonar">
 
-    <!-- Shaft for the Radar -->
+    <!-- The Shaft of the Sonar. -->
     <link name="shaft">
-      <pose>0 0 0.0225 0 0 0</pose>
+
+      <pose>0 0 0.025 0 0 0</pose>
       <inertial>
-        <mass>0.01</mass>
+        <mass>0.1</mass>
         <inertia>
-          <ixx>1.89e-6</ixx>
-          <iyy>1.89e-6</iyy>
-          <izz>4.05e-7</izz>
+          <ixx>0.00002646</ixx>
+          <iyy>0.00002646</iyy>
+          <izz>0.00001125</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="sh_col">
+
+      <collision name="shaft_collision">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
-            <length>0.045</length>
+            <radius>0.015</radius>
+            <length>0.050</length>
           </cylinder>
         </geometry>
       </collision>
-      <visual name="sh_vis">
+
+      <visual name="shaft_visual">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
-            <length>0.045</length>
+            <radius>0.015</radius>
+            <length>0.050</length>
           </cylinder>
         </geometry>
       </visual>
     </link>
 
-    <!-- Radar module -->
-    <link name="radar">
-      <pose>0 0 0.055 0 0 0</pose>
+    <!-- The Head of the Sonar. -->
+    <link name="head">
+
+      <pose>0 0 0.060 0 0 0</pose>
       <inertial>
-        <mass>0.015</mass>
+        <mass>0.1</mass>
         <inertia>
-          <ixx>2.5e-6</ixx>
-          <iyy>1.0e-6</iyy>
-          <izz>2.5e-6</izz>
+          <ixx>0.00003333</ixx>
+          <iyy>0.00001667</iyy>
+          <izz>0.00004333</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="rd_col">
+
+      <collision name="head_collision">
         <geometry>
-          <box><size>0.02 0.04 0.02 0 0 0</size></box>
+          <box><size>0.04 0.06 0.02</size></box>
         </geometry>
       </collision>
-      <visual name="rd_vis">
+
+      <visual name="head_visual">
         <geometry>
-          <box><size>0.02 0.04 0.02 0 0 0</size></box>
+          <box><size>0.04 0.06 0.02</size></box>
         </geometry>
       </visual>
     </link>
 
     <!-- Joint -->
-    <joint name="rd_joint" type="revolute">
+    <joint name="neck_joint" type="revolute">
+
+      <pose>0 0 -0.01 0 0 0</pose>
       <parent>shaft</parent>
-      <child>radar</child>
+      <child>head</child>
+
       <axis>
         <xyz>0 0 1</xyz>
-        <use_parent_model_frame>0</use_parent_model_frame>
         <limit>
           <lower>-1.309</lower>
           <upper>1.309</upper>
@@ -74,32 +82,35 @@
       </axis>
     </joint>
 
-    <!-- Eyes -->
+    <!-- Left Eye. The reciever for US sensor is on this eye. -->
     <link name="eye_left">
-      <pose>0.0175 0.010 0.055 0 1.5708 3.1416</pose>
+
+      <pose>0.0275 0.015 0.06 0 1.5708 3.1416</pose>
       <inertial>
-        <mass>0.01</mass>
+        <mass>0.05</mass>
         <inertia>
-          <ixx>1.71e-6</ixx>
-          <iyy>1.71e-6</iyy>
-          <izz>4.50e-8</izz>
+          <ixx>0.00000219</ixx>
+          <iyy>0.00000219</iyy>
+          <izz>0.00000250</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="sh_col">
+
+      <collision name="eye_left_collision">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
+            <radius>0.010</radius>
             <length>0.015</length>
           </cylinder>
         </geometry>
       </collision>
-      <visual name="sh_vis">
+
+      <visual name="eye_left_visual">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
+            <radius>0.010</radius>
             <length>0.015</length>
           </cylinder>
         </geometry>
@@ -116,44 +127,48 @@
       </sensor>
     </link>
 
-    <joint name="el_joint" type="fixed">
-      <parent>radar</parent>
+    <!-- Fix the Eye to the Sonar Head. -->
+    <joint name="eye_left_joint" type="fixed">
+      <parent>head</parent>
       <child>eye_left</child>
     </joint>
 
+    <!-- Right Eye -->
     <link name="eye_right">
-      <pose>0.0175 -0.010 0.055 0 1.5708 0</pose>
+
+      <pose>0.0275 -0.015 0.06 0 1.5708 0</pose>
       <inertial>
-        <mass>0.01</mass>
+        <mass>0.05</mass>
         <inertia>
-          <ixx>1.71e-6</ixx>
-          <iyy>1.71e-6</iyy>
-          <izz>4.50e-8</izz>
+          <ixx>0.00000219</ixx>
+          <iyy>0.00000219</iyy>
+          <izz>0.00000250</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="sh_col">
+      <collision name="eye_right_collision">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
+            <radius>0.010</radius>
             <length>0.015</length>
           </cylinder>
         </geometry>
       </collision>
-      <visual name="sh_vis">
+      <visual name="eye_right_visual">
         <geometry>
           <cylinder>
-            <radius>0.009</radius>
+            <radius>0.010</radius>
             <length>0.015</length>
           </cylinder>
         </geometry>
       </visual>
     </link>
 
-    <joint name="er_joint" type="fixed">
-      <parent>radar</parent>
+    <!-- Fix the Eye to the Sonar Head. -->
+    <joint name="eye_right_joint" type="fixed">
+      <parent>head</parent>
       <child>eye_right</child>
     </joint>
 
