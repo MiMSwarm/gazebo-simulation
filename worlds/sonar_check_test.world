@@ -15,19 +15,9 @@
     </include>
 
     <!-- Cool robots -->
-    <model name="ultrasonic">
-      <include>
-        <uri>model://sonar</uri>
-      </include>
-      <plugin name="sonar_control" filename="sonar.so">
-        <velocity>1.0</velocity>
-        <pid>
-          <p>0.01</p>
-          <i>0.00</i>
-          <d>0.00</d>
-        </pid>
-      </plugin>
-    </model>
+    <include>
+      <uri>model://minimapper</uri>
+    </include>
 
   </world>
 </sdf>

@@ -2,8 +2,9 @@
  *  Plugin to control the sensor movement and data.
  */
 
-#include <string>
 #include <cmath>
+#include <fstream>
+#include <string>
 
 #include <ignition/math/Pose3.hh>
 #include <gazebo/gazebo.hh>
@@ -15,7 +16,9 @@ namespace gazebo {
       public:
 
         /// \brief Constructor
-        SonarPlugin() {}
+        SonarPlugin() {
+            this->vfile.open("data/velocities.txt");
+        }
 
         /// \brief Called by Gazebo when the model is loaded into the
         /// simulation.
@@ -56,21 +59,24 @@ namespace gazebo {
         }
 
         void OnUpdate() {
+            vfile << this->joint->GetVelocity(0) << std::endl;
+
             double current_pos = this->joint->Position(0);
             std::string joint_name = this->joint->GetScopedName();
 
             // If the position crosses the limit, flip velocity.
             if (current_pos > this->upper_limit)
-                this->jctrl->SetVelocityTarget(joint_name, this->velocity);
-            else if (current_pos < this->lower_limit)
                 this->jctrl->SetVelocityTarget(joint_name, -this->velocity);
-            
+            else if (current_pos < this->lower_limit)
+                this->jctrl->SetVelocityTarget(joint_name, this->velocity);
         }
 
       private:
         double velocity;
         double upper_limit;
         double lower_limit;
+
+        std::ofstream vfile;
 
         common::PID pid;
         physics::JointPtr joint;

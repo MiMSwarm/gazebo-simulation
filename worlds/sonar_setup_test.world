@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<!-- To test a single robot -->
+<sdf version="1.6">
+  <world name="test_world">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Cool robots -->
+    <model name="ultrasonic">
+      <include>
+        <uri>model://sonar</uri>
+      </include>
+      <plugin name="sonar_control" filename="sonar.so">
+        <velocity>1.0</velocity>
+        <pid>
+          <p>0.01</p>
+          <i>0</i>
+          <d>0</d>
+        </pid>
+      </plugin>
+    </model>
+
+  </world>
+</sdf>
