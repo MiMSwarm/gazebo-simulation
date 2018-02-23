@@ -3,25 +3,28 @@
   <model name="minimapper">
 
     <!-- Body of the MM -->
-    <link name="chasis">
+    <link name="body">
+
       <pose>0 0 0.055 0 0 0</pose>
       <inertial>
-        <mass>0.3</mass>
+        <mass>0.6</mass>
         <inertia>
-          <ixx>5.2e-5</ixx>
-          <iyy>8.0e-4</iyy>
-          <izz>1.0e-3</izz>
+          <ixx>0.00104</ixx>
+          <iyy>0.00160</iyy>
+          <izz>0.00200</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="mm_col">
+
+      <collision name="body_collision">
         <geometry>
           <box><size>0.16 0.12 0.08</size></box>
         </geometry>
       </collision>
-      <visual name="mm_vis">
+
+      <visual name="body_visual">
         <geometry>
           <box><size>0.16 0.12 0.08</size></box>
         </geometry>
@@ -34,15 +37,15 @@
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>1.50e-4</ixx>
-          <iyy>1.50e-4</iyy>
-          <izz>2.25e-4</izz>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="fr_col">
+      <collision name="wheel_fr_collision">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -50,7 +53,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="fr_col">
+      <visual name="wheel_fr_visual">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -60,8 +63,8 @@
       </visual>
     </link>
 
-    <joint name="fr_joint" type="revolute">
-      <parent>chasis</parent>
+    <joint name="wheel_fr_joint" type="revolute">
+      <parent>body</parent>
       <child>wheel_fr</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -75,15 +78,15 @@
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>1.50e-4</ixx>
-          <iyy>1.50e-4</iyy>
-          <izz>2.25e-4</izz>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="fl_col">
+      <collision name="wheel_fl_collision">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -91,7 +94,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="fl_col">
+      <visual name="wheel_fl_visual">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -101,8 +104,8 @@
       </visual>
     </link>
 
-    <joint name="fl_joint" type="revolute">
-      <parent>chasis</parent>
+    <joint name="wheel_fl_joint" type="revolute">
+      <parent>body</parent>
       <child>wheel_fl</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -117,15 +120,15 @@
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>1.50e-4</ixx>
-          <iyy>1.50e-4</iyy>
-          <izz>2.25e-4</izz>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="rr_col">
+      <collision name="wheel_rr_collision">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -133,7 +136,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="rr_col">
+      <visual name="wheel_rr_visual">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -143,8 +146,8 @@
       </visual>
     </link>
 
-    <joint name="rr_joint" type="revolute">
-      <parent>chasis</parent>
+    <joint name="wheel_rr_joint" type="revolute">
+      <parent>body</parent>
       <child>wheel_rr</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -159,15 +162,15 @@
       <inertial>
         <mass>0.5</mass>
         <inertia>
-          <ixx>1.50e-4</ixx>
-          <iyy>1.50e-4</iyy>
-          <izz>2.25e-4</izz>
+          <ixx>0.000150</ixx>
+          <iyy>0.000150</iyy>
+          <izz>0.000225</izz>
           <ixy>0</ixy>
           <iyz>0</iyz>
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="rl_col">
+      <collision name="wheel_rl_collision">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -175,7 +178,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="rl_col">
+      <visual name="wheel_rl_visual">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -185,8 +188,8 @@
       </visual>
     </link>
 
-    <joint name="rl_joint" type="revolute">
-      <parent>chasis</parent>
+    <joint name="wheel_rl_joint" type="revolute">
+      <parent>body</parent>
       <child>wheel_rl</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -200,9 +203,9 @@
     <pose>0.04 0 0.095 0 0 0</pose>
   </include>
 
-  <joint name="ur_joint" type="fixed">
+  <joint name="sonar_joint" type="fixed">
     <pose>0.04 0 0.095 0 0 0</pose>
-    <parent>chasis</parent>
+    <parent>body</parent>
     <child>sonar::shaft</child>
   </joint>
 
