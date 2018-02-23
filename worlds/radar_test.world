@@ -15,7 +15,7 @@
     </include>
 
     <!-- Cool robots -->
-    <model name="us_radar">
+    <model name="ultrasonic">
       <include>
         <uri>model://ultrasonic_radar</uri>
       </include>

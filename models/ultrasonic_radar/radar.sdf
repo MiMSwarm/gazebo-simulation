@@ -2,8 +2,9 @@
 <sdf version="1.6">
   <model name="ultrasonic_radar">
 
-    <!-- Shaft for the Radar -->
+    <!-- The Shaft of the Radar. -->
     <link name="shaft">
+
       <pose>0 0 0.025 0 0 0</pose>
       <inertial>
         <mass>0.1</mass>
@@ -16,6 +17,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
+
       <collision name="shaft_collision">
         <geometry>
           <cylinder>
@@ -24,6 +26,7 @@
           </cylinder>
         </geometry>
       </collision>
+
       <visual name="shaft_visual">
         <geometry>
           <cylinder>
@@ -34,8 +37,9 @@
       </visual>
     </link>
 
-    <!-- Radar module -->
-    <link name="radar">
+    <!-- The Head of the Radar. -->
+    <link name="head">
+
       <pose>0 0 0.060 0 0 0</pose>
       <inertial>
         <mass>0.1</mass>
@@ -48,12 +52,14 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="radar_collision">
+
+      <collision name="head_collision">
         <geometry>
           <box><size>0.04 0.06 0.02</size></box>
         </geometry>
       </collision>
-      <visual name="radar_visual">
+
+      <visual name="head_visual">
         <geometry>
           <box><size>0.04 0.06 0.02</size></box>
         </geometry>
@@ -61,10 +67,12 @@
     </link>
 
     <!-- Joint -->
-    <joint name="radar_rot_joint" type="revolute">
+    <joint name="neck_joint" type="revolute">
+
       <pose>0 0 -0.01 0 0 0</pose>
       <parent>shaft</parent>
       <child>radar</child>
+
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -74,8 +82,9 @@
       </axis>
     </joint>
 
-    <!-- Eyes -->
+    <!-- Left Eye. The reciever for US sensor is on this eye. -->
     <link name="eye_left">
+
       <pose>0.0275 0.015 0.06 0 1.5708 3.1416</pose>
       <inertial>
         <mass>0.05</mass>
@@ -88,6 +97,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
+
       <collision name="eye_left_collision">
         <geometry>
           <cylinder>
@@ -96,6 +106,7 @@
           </cylinder>
         </geometry>
       </collision>
+
       <visual name="eye_left_visual">
         <geometry>
           <cylinder>
@@ -116,12 +127,15 @@
       </sensor>
     </link>
 
+    <!-- Fix the Eye to the Radar Head. -->
     <joint name="eye_left_joint" type="fixed">
-      <parent>radar</parent>
+      <parent>head</parent>
       <child>eye_left</child>
     </joint>
 
+    <!-- Right Eye -->
     <link name="eye_right">
+
       <pose>0.0275 -0.015 0.06 0 1.5708 0</pose>
       <inertial>
         <mass>0.05</mass>
@@ -152,8 +166,9 @@
       </visual>
     </link>
 
+    <!-- Fix the Eye to the Radar Head. -->
     <joint name="eye_right_joint" type="fixed">
-      <parent>radar</parent>
+      <parent>head</parent>
       <child>eye_right</child>
     </joint>
 
