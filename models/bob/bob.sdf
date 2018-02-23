@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="bob">
+
+    <static>true</static>
+
+    <!-- The Shaft of the Bob. -->
+    <link name="shaft">
+
+      <pose>0 0 0.05 0 0 0</pose>
+
+      <collision name="shaft_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.10</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="shaft_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.10</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- The Ball of the Bob. -->
+    <link name="ball">
+
+      <pose>0 0 0.12 0 0 0</pose>
+
+      <collision name="ball_collision">
+        <geometry>
+          <sphere><radius>0.03</radius></sphere>
+        </geometry>
+      </collision>
+
+      <visual name="ball_visual">
+        <geometry>
+          <sphere><radius>0.03</radius></sphere>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Joint -->
+    <joint name="joint" type="fixed">
+      <parent>shaft</parent>
+      <child>ball</child>
+    </joint>
+
+  </model>
+</sdf>
