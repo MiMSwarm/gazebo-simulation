@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!-- To test a single robot -->
+<sdf version="1.6">
+  <world name="test_world">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Cool robots -->
+    <model name="us_radar">
+      <include>
+        <uri>model://ultrasonic_radar</uri>
+      </include>
+      <!-- <plugin name="radar_control" filename="ultrasonic_radar.so">
+        <velocity>2</velocity>
+      </plugin> -->
+    </model>
+
+  </world>
+</sdf>

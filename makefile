@@ -1,32 +1,32 @@
-#
-# TODO: Move `libmongoclient.a` to /usr/local/lib so this can work on production servers
-#
+# TODO: Make stuff work.
  
-CC := g++					# Compiler
+CC = clang++
 
-SRCDIR := src
-BUILDDIR := build
+SRCDIR = src
+PLUGDIR = plugins
 
-TARGET := plugins.so
+# Compile for shared library.
+CFLAGS = -fPIC -Wall $(shell pkg-config --cflags gazebo)
+LFLAGS = -shared $(shell pkg-config --libs gazebo)
 
-CFLAGS := -Wall $(shell pkg-config --cflags gazebo)
-LFLAGS := $(shell pkg-config --libs)
+# Find required files.
+SRCEXT = cc
+SOURCES = $(wildcard src/*)
+PLUGINS = $(patsubst $(SRCDIR)/%,$(PLUGDIR)/%,$(SOURCES:.$(SRCEXT)=.so))
 
-SRCEXT := cc
-SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+all : $(PLUGINS)
 
-$(TARGET): $(OBJECTS)
-	@echo "Linking to shared library $@."
-	$(CC) $^ -shared -o $(TARGET) $(LFLAGS)
+$(PLUGDIR)/%.so : $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(PLUGDIR)
+	@echo -n "Building $@ ... "; $(CC) $(CFLAGS) $< -o $@ $(LFLAGS)
+	@echo "done.";
 
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@mkdir -p $(BUILDDIR)
-	@echo "Compiling $@."
-	$(CC) $(CFLAGS) -c -o $@ $<
+clean :
+	@echo -n "Cleaning $(PLUGDIR) ..."; $(RM) -r $(PLUGDIR)
+	@echo "done.";
 
-clean:
-	@echo "Cleaning."; 
-	$(RM) -r $(BUILDDIR) $(TARGET)
+check :
+	@echo "Sources: $(SOURCES)"
+	@echo "Plugins: $(PLUGINS)"
 
-.PHONY: clean
+.PHONY : all clean check
