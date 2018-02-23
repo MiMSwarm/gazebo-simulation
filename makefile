@@ -1,6 +1,6 @@
 # TODO: Make stuff work.
  
-CC = clang++
+CC = g++
 
 SRCDIR = src
 PLUGDIR = plugins

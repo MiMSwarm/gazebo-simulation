@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # World to use. Uncomment the second line to use test.world.
-# WORLD="model_test.world"
-WORLD="radar_test.world"
+WORLD="$1.world"
 
 # Path to models.
 BASE_PATH=$(pwd)

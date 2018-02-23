@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <model name="ultrasonic_radar">
+  <model name="sonar">
 
-    <!-- The Shaft of the Radar. -->
+    <!-- The Shaft of the Sonar. -->
     <link name="shaft">
 
       <pose>0 0 0.025 0 0 0</pose>
@@ -37,7 +37,7 @@
       </visual>
     </link>
 
-    <!-- The Head of the Radar. -->
+    <!-- The Head of the Sonar. -->
     <link name="head">
 
       <pose>0 0 0.060 0 0 0</pose>
@@ -71,7 +71,7 @@
 
       <pose>0 0 -0.01 0 0 0</pose>
       <parent>shaft</parent>
-      <child>radar</child>
+      <child>head</child>
 
       <axis>
         <xyz>0 0 1</xyz>
@@ -127,7 +127,7 @@
       </sensor>
     </link>
 
-    <!-- Fix the Eye to the Radar Head. -->
+    <!-- Fix the Eye to the Sonar Head. -->
     <joint name="eye_left_joint" type="fixed">
       <parent>head</parent>
       <child>eye_left</child>
@@ -166,7 +166,7 @@
       </visual>
     </link>
 
-    <!-- Fix the Eye to the Radar Head. -->
+    <!-- Fix the Eye to the Sonar Head. -->
     <joint name="eye_right_joint" type="fixed">
       <parent>head</parent>
       <child>eye_right</child>

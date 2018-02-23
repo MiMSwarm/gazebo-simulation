@@ -196,14 +196,14 @@
   
   <!-- Ultrasonic Radar -->
   <include>
-    <uri>model://ultrasonic_radar</uri>
+    <uri>model://sonar</uri>
     <pose>0.04 0 0.095 0 0 0</pose>
   </include>
 
   <joint name="ur_joint" type="fixed">
     <pose>0.04 0 0.095 0 0 0</pose>
     <parent>chasis</parent>
-    <child>ultrasonic_radar::shaft</child>
+    <child>sonar::shaft</child>
   </joint>
 
   </model>
