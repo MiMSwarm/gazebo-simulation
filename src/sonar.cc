@@ -5,6 +5,7 @@
 #include <cmath>
 #include <fstream>
 #include <string>
+#include <list>
 
 #include <ignition/math/Pose3.hh>
 #include <gazebo/gazebo.hh>
@@ -16,9 +17,7 @@ namespace gazebo {
       public:
 
         /// \brief Constructor
-        SonarPlugin() {
-            this->vfile.open("data/velocities.txt");
-        }
+        SonarPlugin() {}
 
         /// \brief Called by Gazebo when the model is loaded into the
         /// simulation.
@@ -50,6 +49,7 @@ namespace gazebo {
 
             // Set the PID controller.
             this->pid = common::PID(p, i, d);
+            this->joint->SetVelocity(0, this->velocity);
             this->jctrl->SetVelocityPID(joint_name, this->pid);
             this->jctrl->SetVelocityTarget(joint_name, this->velocity);
 
@@ -59,7 +59,7 @@ namespace gazebo {
         }
 
         void OnUpdate() {
-            vfile << this->joint->GetVelocity(0) << std::endl;
+            vel.push_back(this->joint->GetVelocity(0));
 
             double current_pos = this->joint->Position(0);
             std::string joint_name = this->joint->GetScopedName();
@@ -71,12 +71,19 @@ namespace gazebo {
                 this->jctrl->SetVelocityTarget(joint_name, this->velocity);
         }
 
+        ~SonarPlugin() noexcept {
+            std::ofstream vfile{"data/velocities.txt"};
+            for (auto it = this->vel.cbegin(); it != this->vel.cend(); it++)
+                vfile << *it << std::endl;
+            vfile.close();
+        }
+
       private:
         double velocity;
         double upper_limit;
         double lower_limit;
 
-        std::ofstream vfile;
+        std::list<double> vel;
 
         common::PID pid;
         physics::JointPtr joint;

@@ -16,7 +16,9 @@ case "${GAZEBO_RESOURCE_PATH:=$BASE_PATH}" in
         export GAZEBO_RESOURCE_PATH="$BASE_PATH:$GAZEBO_RESOURCE_PATH"
         export GAZEBO_MODEL_PATH="$MODEL_PATH:$GAZEBO_MODEL_PATH"
         export GAZEBO_PLUGIN_PATH="$PLUGIN_PATH:$GAZEBO_PLUGIN_PATH"
+        export GAZEBO_MODEL_DATABASE_URI=""
         ;;
 esac
 
-gazebo worlds/$WORLD --verbose
+gzclient --verbose &
+exec gzserver worlds/$WORLD --verbose

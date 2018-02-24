@@ -20,7 +20,7 @@
         <uri>model://sonar</uri>
       </include>
       <plugin name="sonar_control" filename="sonar.so">
-        <velocity>1.0</velocity>
+        <velocity>0.5</velocity>
         <pid>
           <p>0.01</p>
           <i>0</i>
