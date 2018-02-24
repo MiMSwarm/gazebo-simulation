@@ -26,9 +26,9 @@
         <type>random</type>
       </distribution>
       <box>
-        <size>5 10 0.5</size>
+        <size>5 10 0.15</size>
       </box>
-      <pose>2.65 0 0.25 0 0 0</pose>
+      <pose>2.65 0 0 0 0 0</pose>
       <model name="bob">
         <include>
           <uri>model://bob</uri>

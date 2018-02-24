@@ -1,4 +1,12 @@
+# Editor Config
 .vscode/
+
+# Build files.
 plugins/
 build/
+
+# Data files.
 data/
+
+# Node.
+node_modules/

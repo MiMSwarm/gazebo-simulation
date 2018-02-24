@@ -113,3 +113,12 @@ $ sudo ln -s /usr/lib/x86_64-linux-gnu/liblapack.so /usr/lib/liblapack.so
 ### Reference Links
 - [Gazebo Tutorials](http://gazebosim.org/tutorials/browse)
 - [HC-SR04 Data Sheet](http://centmesh.csc.ncsu.edu/ff_drone_f14_finals/Sensor1/files/hcsr04.pdf) on [CentMesh](http://centmesh.csc.ncsu.edu/)
+
+## Authors
+Abhijit J Theophilus
+Surya Prakash M
+Vinay Kumar Adiga G
+Vijayalaxmi Hullatti
+
+## License
+Licensed under the Apache License, Version 2.
