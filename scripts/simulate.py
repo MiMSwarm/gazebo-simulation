@@ -3,12 +3,16 @@
 from signal import signal, SIGINT
 import sys
 import subprocess
-from support import find_world_file, print_col, update_environ
+
+
+from tools import find_world_file
+from tools import print_col
+from tools import update_environ
 
 
 help_text = """
-Usage: ./simulate.py <world-name> [-q] [--quiet]
-                     [-c] [--client] [-h --help]
+Usage: ./simulate.py <world-name> [-h] [--help] [-q] [--quiet]
+                     [-s] [--single] [-c] [--client]
 Set up environment and run gazebo server and (optionally) client.
 
     <world-name>

@@ -10,13 +10,14 @@ def update_environ():
 
     # Environment variables to set.
     BASE = os.getcwd()
-    MODELS = os.path.join(BASE, 'models')
-    PLUGINS = os.path.join(BASE, 'plugins')
+    PLUGINS = os.path.join(BASE, 'lib')
+    RESOURCES = os.path.join(BASE, 'res')
+    MODELS = os.path.join(RESOURCES, 'models')
 
     # Set the vaue to '' to set the var to ''.
     # Anything else will be added to current var value.
     minimapper_env = {
-        'GAZEBO_RESOURCE_PATH': BASE,
+        'GAZEBO_RESOURCE_PATH': RESOURCES,
         'GAZEBO_MODEL_PATH': MODELS,
         'GAZEBO_PLUGIN_PATH': PLUGINS,
         'GAZEBO_MODEL_DATABASE_URI': None
@@ -61,7 +62,8 @@ def find_world_file(world):
     if not os.path.splitext(world)[1] == '.world':
         world += '.world'
 
-    checks = [world] + [_join(f, world) for f in ['worlds', 'tests']]
+    test_folders = ('res', _join('res', 'worlds'), _join('res', 'tests'))
+    checks = [world] + [_join(f, world) for f in test_folders]
 
     for fpath in checks:
         if _isfile(fpath):
@@ -72,25 +74,45 @@ def find_world_file(world):
 
 
 if __name__ == '__main__':
-    from pprint import pprint
+    print('\nCheck update_environ:', end='\n\n')
+    old_env = os.environ.copy()
+    env = update_environ()
+    print('New keys: ')
+    for k, v in env.items():
+        if k not in old_env:
+            print(k, ': ', v, sep='')
+    print('')
 
-    print('\nCheck update_environ:')
-    pprint(update_environ())
+    print('Changed keys: ')
+    for k, v in env.items():
+        if k in old_env and v != old_env[k]:
+            print('\033[1m', k, ':\033[0m ', v, sep='')
+    print('')
 
-    print('\nCheck print_col:')
+    print('\nCheck print_col:\n')
     print_col('Another one bites the dust.')
     print_col('Why would you do this?')
+    print('')
 
-    print('\nCheck find_world_file:')
-    try:
-        assert find_world_file('model_check') == 'tests/model_check.world'
-        assert find_world_file('icy') == 'worlds/icy.world'
-        assert find_world_file('comms_check.world') == \
-            'tests/comms_check.world'
-        assert find_world_file('tests/sonar_map_test.world') == \
-            'tests/sonar_map_test.world'
-        assert find_world_file('non-existent') is None
-    except Exception as e:
-        print(e)
-    else:
-        print('All checks passed.')
+    print('\nCheck find_world_file:\n')
+    _join = os.path.join
+    worlds = [
+        'model_check',
+        'icy',
+        'comms_check.world',
+        'tests/sonar_map_test.world',
+        'non-existent'
+    ]
+    fpaths = [
+        _join('res', 'tests', 'model_check.world'),
+        _join('res', 'worlds', 'icy.world'),
+        _join('res', 'tests', 'comms_check.world'),
+        _join('res', 'tests', 'sonar_map_test.world'),
+        None
+    ]
+    for w, f in zip(worlds, fpaths):
+        if find_world_file(w) != f:
+            print('An error occurred with ', w, '.', sep='')
+        else:
+            print('Passed ' + w + '.')
+    print('')

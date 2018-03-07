@@ -46,7 +46,7 @@ def sonar_data_gen(fname):
         yield get_sonar_data(fname)
 
 
-ranges_fname = 'data/Zimmer_ranges.txt'
+ranges_fname = os.path.join('res', 'data', 'Zimmer_ranges.txt')
 points = get_sonar_data(ranges_fname)
 boundary = create_semicircle(radius=4)
 
