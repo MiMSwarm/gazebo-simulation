@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-import os
 from signal import signal, SIGINT
 import sys
 import subprocess
-from support import print_col, update_environ
+from support import find_world_file, print_col, update_environ
 
 
 help_text = """
@@ -39,13 +38,12 @@ def parse_args():
             print(help_text)
             sys.exit(0)
         else:
-
-            # If not an actual file, search within worlds/
-            if not os.path.isfile(arg):
-                if not arg.endswith('.world'):
-                    arg += '.world'
-                arg = os.path.join('worlds', arg)
-            args_to_pass.insert(0, arg)
+            wfile = find_world_file(arg)
+            if wfile is None:
+                print('Invalid world file.')
+                print(help_text)
+                sys.exit(-1)
+            args_to_pass.insert(0, wfile)
     return args, launch_client
 
 

@@ -14,9 +14,9 @@ Set up environment and run all demonstrations.
 
 
 demo_worlds = [
-    'sonar_map_test',
-    'model_ctrl_test',
-    'coord_algo_test',
+    'sonar_map_test',       # Bob test.
+    'model_ctrl_test',      # Movement test.
+    'coord_algo_test',      # Coordination test.
 ]
 
 
