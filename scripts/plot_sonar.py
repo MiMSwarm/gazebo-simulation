@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import itertools as itt
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -33,7 +34,17 @@ def get_sonar_data(fname):
     mns = MeanShift(bandwidth=0.1, n_jobs=3)
     points = mns.fit(points.T).cluster_centers_
 
-    return points.T
+    final_pts = []
+    for p1, p2 in itt.combinations(points, 2):
+        if not np.isclose(np.sum(p1**2), np.sum(p2**2), atol=0.1, rtol=0):
+            continue
+
+        r2 = (np.sum(p1**2) + np.sum(p2**2)) / 2
+        if np.isclose(p1[0]*p2[0] + p1[1]*p2[1], r2 * np.sqrt(3)/2,
+                      atol=0.1, rtol=0):
+            final_pts.append((p1 + p2) / 2)
+
+    return np.array(final_pts).T
 
 
 def create_semicircle(radius=4):
@@ -82,7 +93,7 @@ plt.pause(0.1)
 it = 1
 for points in sonar_data_gen(ranges_fname):
     plotted_pts.set_data(points[0], points[1])
-    print('Updating SONAR plot. Iteration %d.' % it)
-    it += 1
     plt.draw()
     plt.pause(0.1)
+    print('Updated SONAR plot. Iteration %d.' % it)
+    it += 1
