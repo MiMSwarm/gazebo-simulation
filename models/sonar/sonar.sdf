@@ -117,7 +117,9 @@
       </visual>
 
       <!-- The actual ultrasonic sensor -->
-      <sensor name="ultrasonic" type="sonar">
+      <sensor name="sonar_sensor" type="sonar">
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
         <visualize>1</visualize>
         <sonar>
           <min>0.02</min>
@@ -171,6 +173,16 @@
       <parent>head</parent>
       <child>eye_right</child>
     </joint>
+
+    <!-- Plugin to Control Head Movement. -->
+    <plugin name="sonar_control" filename="sonar.so">
+      <velocity>0.2</velocity>
+      <pid>
+        <p>0.005</p>
+        <i>0</i>
+        <d>0</d>
+      </pid>
+    </plugin>
 
   </model>
 </sdf>

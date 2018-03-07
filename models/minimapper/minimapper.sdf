@@ -201,14 +201,6 @@
   <include>
     <uri>model://sonar</uri>
     <pose>0.04 0 0.095 0 0 0</pose>
-    <plugin name="sonar_control" filename="sonar.so">
-      <velocity>0.5</velocity>
-      <pid>
-        <p>0.005</p>
-        <i>0</i>
-        <d>0</d>
-      </pid>
-    </plugin>
   </include>
 
   <joint name="sonar_joint" type="fixed">

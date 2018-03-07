@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
 import os
-import signal
+from signal import signal, SIGINT
 import sys
 import subprocess
+from support import print_col, update_environ
+
 
 help_text = """
 Usage: ./simulate.py <world-name> [-q] [--quiet]
@@ -23,98 +25,72 @@ OPTIONAL ARGUMENTS:
 """
 
 
-# Environment variables to set.
-BASE = os.getcwd()
-MODELS = os.path.join(BASE, 'models')
-PLUGINS = os.path.join(BASE, 'plugins')
+def parse_args():
+    """Parse command line arguments."""
+    args_to_pass = ['--verbose']
+    launch_client = False
 
-# Set the vaue to '' to set the var to ''.
-# Anything else will be added to current var value.
-minimapper_env = {
-    'GAZEBO_RESOURCE_PATH': BASE,
-    'GAZEBO_MODEL_PATH': MODELS,
-    'GAZEBO_PLUGIN_PATH': PLUGINS,
-    'GAZEBO_MODEL_DATABASE_URI': ''
-}
+    for arg in sys.argv[1:]:
+        if arg in ['-q', '--quiet']:
+            args_to_pass.remove('--verbose')
+        elif arg in ['-c', '--client']:
+            launch_client = True
+        elif arg in ['-h', '--help']:
+            print(help_text)
+            sys.exit(0)
+        else:
 
-# Conditionally set environment variables.
-env = os.environ.copy()
-for key, val in minimapper_env.items():
-    if key not in env or val == '':
-        env[key] = val
-    elif key in env and val not in env[key]:
-        env[key] = val + ':' + env[key]
-
-
-# Parse command line arguments.
-args_to_pass = ['--verbose']
-launch_client = False
-
-for arg in sys.argv[1:]:
-    if arg in ['-q', '--quiet']:
-        args_to_pass.remove('--verbose')
-    elif arg in ['-c', '--client']:
-        launch_client = True
-    elif arg in ['-h', '--help']:
-        print(help_text)
-        sys.exit(0)
-    else:
-
-        # If not an actual file, search within worlds/
-        if not os.path.isfile(arg):
-            if not arg.endswith('.world'):
-                arg += '.world'
-            arg = os.path.join('worlds', arg)
-        args_to_pass.insert(0, arg)
+            # If not an actual file, search within worlds/
+            if not os.path.isfile(arg):
+                if not arg.endswith('.world'):
+                    arg += '.world'
+                arg = os.path.join('worlds', arg)
+            args_to_pass.insert(0, arg)
+    return args, launch_client
 
 
-def print_col(*args, **kwargs):
-    base = '\033[0m'
-    pre = 'MiM'
-    if isinstance(args[0], str) and args[0].startswith('Why'):
-        pre = 'Why'
-    colors = {
-        'Why': '\033[1;31m',
-        'MiM': '\033[1;34m',
-    }
-    pretext = '{0}[{1}]'.format(colors.get(pre, base), pre)
-    print(pretext, *args, **kwargs)
-
-
-# Handler for SIGINT.
 def sig_handler(num, fr):
-    if launch_client and client.poll() is None:
+    """Signal handler for SIGINT."""
+    if launch_client:
         print('', end='\r')
-        print_col('Why would you do this? Close the GUI.')
-        print_col('Attempting to kill server. Hit Ctrl-\\ if this fails.')
+        print_col('Why would you do this? Close the GUI first.')
+        print_col('Attempting to interrupt server.')
+        server.wait(20)
+        print_col('Failed. Attempting to terminate server.')
         server.terminate()
-        server.wait()
+        server.wait(30)
+        print_col('Hit Ctrl-\\ if this fails (or if you run out of patience).')
         sys.exit(-1)
     else:
         print('', end='\r')
         print_col('Quitting server.')
 
 
-# Set up the server and a handler for SIGINT.
-server = subprocess.Popen(['gzserver', *args_to_pass], env=env)
-signal.signal(signal.SIGINT, sig_handler)
+def run_client(args, env):
+    """Runs the client for Gazebo. Sends SIGINT to server if the client
+    fails to launch.
+    """
+    try:
+        while True:
+            client = subprocess.Popen(['gzclient', *args], env=env)
+            client.wait()
+            print_col('Client quit. Restart? (y/n)', end=' ')
+            if input() != 'y':
+                print_col('Client will not be restarted.')
+                print_col('Press Ctrl-C to quit server.')
+                return False
+            else:
+                print_col('Restarting client.')
+                print('')
+    except Exception:
+        server.send_signal(SIGINT)
 
-try:
-    # Launch the client and setup another handler for SIGINT.
-    while launch_client:
-        client = subprocess.Popen(['gzclient', *args_to_pass], env=env)
-        client.wait()
-        print_col('Client quit. Restart? (y/n)', end='')
-        if input() != 'y':
-            print_col('Client will not be restarted.')
-            print_col('Press Ctrl-C to quit server.')
-            launch_client = False
-        else:
-            print_col('Restarting client.')
-            print('')
-except Exception:
-    server.send_signal(signal.SIGINT)
 
+env = update_environ()
+args, launch_client = parse_args()
 
-# Wait for server to die.
+signal(SIGINT, sig_handler)
+server = subprocess.Popen(['gzserver', *args], env=env)
+if launch_client:
+    launch_client = run_client(args, env)
 server.wait()

@@ -1,32 +1,33 @@
 # TODO: Make stuff work.
  
-CC = g++
+CC = clang++
 
-SRCDIR = src
-PLUGDIR = plugins
+PLUGSRCDIR = src/plugins
+PLUGLIBDIR = plugins
 
 # Compile for shared library.
 CFLAGS = -fPIC -Wall $(shell pkg-config --cflags gazebo)
 LFLAGS = -shared $(shell pkg-config --libs gazebo)
 
 # Find required files.
-SRCEXT = cc
-SOURCES = $(wildcard src/*)
-PLUGINS = $(patsubst $(SRCDIR)/%,$(PLUGDIR)/%,$(SOURCES:.$(SRCEXT)=.so))
+PLUGSRC = $(wildcard $(PLUGSRCDIR)/*)
+PLUGLIB = $(patsubst $(PLUGSRCDIR)/%,$(PLUGLIBDIR)/%,$(PLUGSRC:.cc=.so))
 
-all : $(PLUGINS)
+all : $(PLUGLIB)
 
-$(PLUGDIR)/%.so : $(SRCDIR)/%.$(SRCEXT)
-	@mkdir -p $(PLUGDIR)
+$(PLUGLIBDIR)/%.so : $(PLUGSRCDIR)/%.cc
+	@mkdir -p $(PLUGLIBDIR)
 	@echo -n "Building $@ ... "; $(CC) $(CFLAGS) $< -o $@ $(LFLAGS)
 	@echo "done.";
 
 clean :
-	@echo -n "Cleaning $(PLUGDIR) ..."; $(RM) -r $(PLUGDIR)
+	@echo -n "Cleaning $(PLUGLIBDIR) ..."; $(RM) -r $(PLUGLIBDIR)
 	@echo "done.";
 
 check :
-	@echo "Sources: $(SOURCES)"
-	@echo "Plugins: $(PLUGINS)"
+	@echo "Plugin src dir: $(PLUGSRCDIR)"
+	@echo "Plugin sources: $(PLUGSRC)"
+	@echo "Plugin lib dir: $(PLUGLIBDIR)"
+	@echo "Plugin library: $(PLUGLIB)"
 
 .PHONY : all clean check

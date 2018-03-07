@@ -16,25 +16,38 @@
 
     <!-- Cool robots -->
     <include>
-      <uri>model://minimapper</uri>
+      <uri>model://sonar</uri>
     </include>
 
-    <!-- The Bobs -->
-    <population name="stormbobs">
-      <model_count>15</model_count>
-      <distribution>
-        <type>random</type>
-      </distribution>
-      <box>
-        <size>5 10 0.15</size>
-      </box>
-      <pose>2.65 0 0 0 0 0</pose>
-      <model name="bob">
-        <include>
-          <uri>model://bob</uri>
-        </include>
-      </model>
-    </population>
+    <include>
+      <name>bob1</name>
+      <uri>model://bob</uri>
+      <pose>1 1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>bob2</name>
+      <uri>model://bob</uri>
+      <pose>2 2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>bob3</name>
+      <uri>model://bob</uri>
+      <pose>2 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>bob4</name>
+      <uri>model://bob</uri>
+      <pose>1 -1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>bob5</name>
+      <uri>model://bob</uri>
+      <pose>2 -2 0 0 0 0</pose>
+    </include>
 
   </world>
 </sdf>
