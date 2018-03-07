@@ -2,7 +2,8 @@
 .vscode/
 
 # Build files.
-plugins/
+*.o
+lib/
 build/
 
 # Data files.
