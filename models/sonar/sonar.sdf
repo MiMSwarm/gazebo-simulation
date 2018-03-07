@@ -75,6 +75,7 @@
 
       <axis>
         <xyz>0 0 1</xyz>
+        <initial_position>-1.3091</initial_position>
         <limit>
           <lower>-1.309</lower>
           <upper>1.309</upper>
@@ -176,7 +177,7 @@
 
     <!-- Plugin to Control Head Movement. -->
     <plugin name="sonar_control" filename="sonar.so">
-      <velocity>0.2</velocity>
+      <velocity>0.5</velocity>
       <pid>
         <p>0.005</p>
         <i>0</i>

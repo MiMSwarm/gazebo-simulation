@@ -44,7 +44,7 @@ def parse_args():
                 print(help_text)
                 sys.exit(-1)
             args_to_pass.insert(0, wfile)
-    return args, launch_client
+    return args_to_pass, launch_client
 
 
 def sig_handler(num, fr):

@@ -16,37 +16,52 @@
 
     <!-- Cool robots -->
     <include>
-      <uri>model://sonar</uri>
+      <name>Zimmer</name>
+      <uri>model://minimapper</uri>
     </include>
 
     <include>
-      <name>bob1</name>
+      <name>BobFury</name>
+      <uri>model://bob</uri>
+      <pose>2 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Team Cap -->
+    <include>
+      <name>CaptainBob</name>
       <uri>model://bob</uri>
       <pose>1 1 0 0 0 0</pose>
     </include>
 
     <include>
-      <name>bob2</name>
+      <name>Bobcon</name>
       <uri>model://bob</uri>
-      <pose>2 2 0 0 0 0</pose>
+      <pose>1 2 0 0 0 0</pose>
     </include>
 
     <include>
-      <name>bob3</name>
+      <name>WinterBob</name>
       <uri>model://bob</uri>
-      <pose>2 0 0 0 0 0</pose>
+      <pose>2 1 0 0 0 0</pose>
     </include>
 
+    <!-- Team Iron -->
     <include>
-      <name>bob4</name>
+      <name>IronBob</name>
       <uri>model://bob</uri>
       <pose>1 -1 0 0 0 0</pose>
     </include>
 
     <include>
-      <name>bob5</name>
+      <name>WarBob</name>
       <uri>model://bob</uri>
-      <pose>2 -2 0 0 0 0</pose>
+      <pose>1 -2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>SpiderBob</name>
+      <uri>model://bob</uri>
+      <pose>2 -1 0 0 0 0</pose>
     </include>
 
   </world>
