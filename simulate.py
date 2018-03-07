@@ -53,16 +53,19 @@ def parse_args():
 
 def sig_handler(num, fr):
     """Signal handler for SIGINT."""
-    if launch_client:
+    if flags[0]:
         print('', end='\r')
         print_col('Why would you do this? Close the GUI first.')
         print_col('Attempting to interrupt server.')
-        server.wait(20)
-        print_col('Failed. Attempting to terminate server.')
-        server.terminate()
-        server.wait(30)
-        print_col('Hit Ctrl-\\ if this fails (or if you run out of patience).')
-        sys.exit(-1)
+        try:
+            server.wait(30)
+        except subprocess.TimeoutExpired:
+            print_col('Failed. Attempting to terminate server.')
+            try:
+                server.terminate()
+                server.wait(30)
+            except subprocess.TimeoutExpired:
+                print_col('Hit Ctrl-\\ if you run out of patience.')
     else:
         print('', end='\r')
         print_col('Quitting server.')
@@ -101,5 +104,5 @@ args, flags = parse_args()
 signal(SIGINT, sig_handler)
 server = subprocess.Popen(['gzserver', *args], env=env)
 if flags[0]:
-    launch_client = run_client(args, env, single=flags[1])
+    flags[0] = run_client(args, env, single=flags[1])
 server.wait()

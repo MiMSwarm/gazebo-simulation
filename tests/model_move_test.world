@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!-- To test a single robot -->
+<sdf version="1.6">
+  <world name="sonar_check">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Cool robots -->
+    <include>
+      <name>Zimmer</name>
+      <uri>model://minimapper</uri>
+    </include>
+
+    <include>
+      <name>BobFury</name>
+      <uri>model://bob</uri>
+      <pose>2 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Team Cap -->
+    <include>
+      <name>CaptainBob</name>
+      <uri>model://bob</uri>
+      <pose>1 1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>Bobcon</name>
+      <uri>model://bob</uri>
+      <pose>1 2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>WinterBob</name>
+      <uri>model://bob</uri>
+      <pose>2 1 0 0 0 0</pose>
+    </include>
+
+    <!-- Team Iron -->
+    <include>
+      <name>IronBob</name>
+      <uri>model://bob</uri>
+      <pose>1 -1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>WarBob</name>
+      <uri>model://bob</uri>
+      <pose>1 -2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>SpiderBob</name>
+      <uri>model://bob</uri>
+      <pose>2 -1 0 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>

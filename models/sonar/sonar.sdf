@@ -127,7 +127,7 @@
         <ray>
           <scan>
             <horizontal>
-              <samples>64</samples>
+              <samples>32</samples>
               <resolution>1</resolution>
               <min_angle>-0.261799</min_angle>
               <max_angle>0.261799</max_angle>
@@ -190,14 +190,14 @@
     </joint>
 
     <!-- Plugin to Control Head Movement. -->
-    <!-- <plugin name="sonar_control" filename="sonar.so">
+    <plugin name="sonar_control" filename="sonar.so">
       <velocity>0.5</velocity>
       <pid>
         <p>0.005</p>
         <i>0</i>
         <d>0</d>
       </pid>
-    </plugin> -->
+    </plugin>
 
   </model>
 </sdf>
