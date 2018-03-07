@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-import itertools as itt
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 from signal import signal, SIGINT
-from sklearn.cluster import MeanShift
 import sys
 import time
 
@@ -26,25 +24,10 @@ def get_sonar_data(fname):
     data = np.vstack((data[::2], data[1::2]))
     data = data[:, data[0] < 4]
 
-    points = np.vstack((
+    return np.vstack((
         data[0] * np.cos(data[1] + np.pi/2),
         data[0] * np.sin(data[1] + np.pi/2),
     ))
-
-    mns = MeanShift(bandwidth=0.1, n_jobs=3)
-    points = mns.fit(points.T).cluster_centers_
-
-    final_pts = []
-    for p1, p2 in itt.combinations(points, 2):
-        if not np.isclose(np.sum(p1**2), np.sum(p2**2), atol=0.1, rtol=0):
-            continue
-
-        r2 = (np.sum(p1**2) + np.sum(p2**2)) / 2
-        if np.isclose(p1[0]*p2[0] + p1[1]*p2[1], r2 * np.sqrt(3)/2,
-                      atol=0.1, rtol=0):
-            final_pts.append((p1 + p2) / 2)
-
-    return np.array(final_pts).T
 
 
 def create_semicircle(radius=4):
@@ -70,6 +53,8 @@ boundary = create_semicircle(radius=4)
 plt.ion()
 
 fig, ax = plt.subplots()
+
+# Setting axes and figures properties.
 ax.set_aspect('equal')
 ax.grid(True, which='both')
 ax.axhline(y=0, color='k')
@@ -86,10 +71,11 @@ ax.set_ylim(0, 5)
 ax.plot(boundary[0], boundary[1])
 plotted_pts = ax.plot(points[0], points[1], 'ro', markersize=2)[0]
 fig.suptitle('SONAR', fontsize=10)
+
 plt.draw()
 plt.pause(0.1)
 
-
+# Live plotting.
 it = 1
 for points in sonar_data_gen(ranges_fname):
     plotted_pts.set_data(points[0], points[1])

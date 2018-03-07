@@ -19,6 +19,7 @@ Set up environment and run gazebo server and (optionally) client.
 
 OPTIONAL ARGUMENTS:
     -q --quiet      Silence output.
+    -s --single     Do not attempt to restart Gazebo Client.
     -c --client     Run Gazebo Client.
     -h --help       Display help and exit.
 """
@@ -28,12 +29,15 @@ def parse_args():
     """Parse command line arguments."""
     args_to_pass = ['--verbose']
     launch_client = False
+    single_launch = False
 
     for arg in sys.argv[1:]:
         if arg in ['-q', '--quiet']:
             args_to_pass.remove('--verbose')
         elif arg in ['-c', '--client']:
             launch_client = True
+        elif arg in ['-s', '--single']:
+            single_launch = True
         elif arg in ['-h', '--help']:
             print(help_text)
             sys.exit(0)
@@ -44,7 +48,7 @@ def parse_args():
                 print(help_text)
                 sys.exit(-1)
             args_to_pass.insert(0, wfile)
-    return args_to_pass, launch_client
+    return args_to_pass, [launch_client, single_launch]
 
 
 def sig_handler(num, fr):
@@ -64,7 +68,7 @@ def sig_handler(num, fr):
         print_col('Quitting server.')
 
 
-def run_client(args, env):
+def run_client(args, env, single=True):
     """Runs the client for Gazebo. Sends SIGINT to server if the client
     fails to launch.
     """
@@ -72,23 +76,30 @@ def run_client(args, env):
         while True:
             client = subprocess.Popen(['gzclient', *args], env=env)
             client.wait()
-            print_col('Client quit. Restart? (y/n)', end=' ')
-            if input() != 'y':
+
+            if not single:
+                print_col('Client quit. Restart? (y/n)', end=' ')
+                ch = input()
+            else:
+                ch = 'n'
+
+            if ch != 'y':
                 print_col('Client will not be restarted.')
                 print_col('Press Ctrl-C to quit server.')
                 return False
             else:
                 print_col('Restarting client.')
                 print('')
+
     except Exception:
         server.send_signal(SIGINT)
 
 
 env = update_environ()
-args, launch_client = parse_args()
+args, flags = parse_args()
 
 signal(SIGINT, sig_handler)
 server = subprocess.Popen(['gzserver', *args], env=env)
-if launch_client:
-    launch_client = run_client(args, env)
+if flags[0]:
+    launch_client = run_client(args, env, single=flags[1])
 server.wait()
