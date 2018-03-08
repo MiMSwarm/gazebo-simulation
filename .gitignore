@@ -6,8 +6,5 @@
 lib/
 build/
 
-# Data files.
-data/
-
 # Node.
 node_modules/

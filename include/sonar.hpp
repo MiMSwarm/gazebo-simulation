@@ -17,6 +17,7 @@
 
 namespace gazebo {
     class SonarPlugin : public ModelPlugin {
+  
       public:
 
         // Called by Gazebo when the model is loaded into the simulation.
@@ -24,6 +25,12 @@ namespace gazebo {
 
         // Called each time the neck joint updates.
         void OnJointUpdate();
+
+        // Write the ranges and positions to a file.
+        void WritePositionsRanges();
+
+        std::vector<double> GetSonarPositions() const;
+        std::vector<double> GetSonarRanges() const;
 
       private:
 
@@ -40,7 +47,8 @@ namespace gazebo {
 
         // For sensor monitoring.
         std::ofstream ranges_f;
-        std::list<double> pos_ranges;
+        std::list<double> positions;
+        std::list<double> ranges;
         sensors::RaySensorPtr sensor;
         event::ConnectionPtr update;
         transport::NodePtr node;

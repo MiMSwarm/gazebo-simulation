@@ -20,13 +20,12 @@ print('Press Ctrl-C to quit.')
 
 
 def get_sonar_data(fname):
-    data = np.loadtxt(fname)
-    data = np.vstack((data[::2], data[1::2]))
+    data = np.loadtxt(fname, delimiter=',').T
     data = data[:, data[0] < 4]
 
     return np.vstack((
-        data[0] * np.cos(data[1] + np.pi/2),
-        data[0] * np.sin(data[1] + np.pi/2),
+        data[1] * np.cos(data[0] + np.pi/2),
+        data[1] * np.sin(data[0] + np.pi/2),
     ))
 
 
@@ -46,7 +45,7 @@ def sonar_data_gen(fname):
         yield get_sonar_data(fname)
 
 
-ranges_fname = os.path.join('res', 'data', 'Zimmer_ranges.txt')
+ranges_fname = os.path.join('res', 'data', 'Zimmer_ranges.csv')
 points = get_sonar_data(ranges_fname)
 boundary = create_semicircle(radius=4)
 

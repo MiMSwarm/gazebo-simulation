@@ -62,39 +62,65 @@ void SonarPlugin::OnJointUpdate()
     // If the position crosses the limit, flip velocity.
     if (current_pos > this->upper_limit) {
         this->jctrl->SetVelocityTarget(joint_name, -this->velocity);
-        
-        // Write the ranges to a stream and write stream to a file.
-        if (this->pos_ranges.size() > 10) {
-            this->ranges_f.open(
-                "data/" + this->model->GetName() + "_ranges.txt");
-            for (double i : this->pos_ranges)
-                this->ranges_f << i << std::endl;
-            this->ranges_f.close();
-            this->pos_ranges.clear();
-        }
+        this->WritePositionsRanges();
     } else if (current_pos < this->lower_limit) {
         this->jctrl->SetVelocityTarget(joint_name, this->velocity);
-
-        // Write the ranges to a stream and write stream to a file.
-        if (this->pos_ranges.size() > 10) {
-            this->ranges_f.open(
-                "data/" + this->model->GetName() + "_ranges.txt");
-            for (double i : this->pos_ranges)
-                this->ranges_f << i << std::endl;
-            this->ranges_f.close();
-            this->pos_ranges.clear();
-        }
+        this->WritePositionsRanges();
     } else {
-        std::vector<double> ranges(32);
-        this->sensor->Ranges(ranges);
+            std::vector<double> ranges(32);
+            this->sensor->Ranges(ranges);
 
-        double min_range = ranges[0];
-        for (double d : ranges)
-            if (d < min_range)
-                min_range = d;
+            double min_range = ranges[0];
+            for (double d : ranges)
+                if (d < min_range)
+                    min_range = d;
 
-        // This is to only store 3 digits of precision in pos.
-        this->pos_ranges.push_back(min_range);
-        this->pos_ranges.push_back(current_pos);
+            // This is to only store 3 digits of precision in pos.
+            this->ranges.push_back(min_range);
+            this->positions.push_back(current_pos);
     }
+}
+
+
+// Write the ranges and positions to a file.
+inline void SonarPlugin::WritePositionsRanges() {
+    unsigned int sz = this->positions.size();
+    
+    if (sz > 10)
+    {
+        this->ranges_f.open(
+            "res/data/" + this->model->GetName() + "_ranges.csv");
+
+        auto pos_it = this->positions.begin();
+        auto rng_it = this->ranges.begin();
+        for (; pos_it != this->positions.end(); pos_it++, rng_it++)
+            this->ranges_f << *pos_it << "," << *rng_it << std::endl;
+        
+        this->ranges_f.close();
+        this->ranges.clear();
+        this->positions.clear();
+    }
+
+}
+
+
+// Get a copy of the positions vector.
+inline std::vector<double> SonarPlugin::GetSonarPositions() const
+{
+    std::vector<double> v;
+    v.reserve(this->positions.size());
+    std::copy(std::begin(this->positions), std::end(this->positions),
+              std::back_inserter(v));
+    return v;
+}
+
+
+// Get a copy of the ranges vector.
+inline std::vector<double> SonarPlugin::GetSonarRanges() const
+{
+    std::vector<double> v;
+    v.reserve(this->positions.size());
+    std::copy(std::begin(this->ranges), std::end(this->ranges),
+              std::back_inserter(v));
+    return v;
 }
