@@ -11,8 +11,6 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/sensors/sensors.hh>
-#include <gazebo/msgs/msgs.hh>
-#include <gazebo/transport/transport.hh>
 
 
 namespace gazebo {
@@ -50,9 +48,6 @@ namespace gazebo {
         std::list<double> positions;
         std::list<double> ranges;
         sensors::RaySensorPtr sensor;
-        event::ConnectionPtr update;
-        transport::NodePtr node;
-        transport::PublisherPtr pub;
 
     };
 

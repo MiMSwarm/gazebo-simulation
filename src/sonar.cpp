@@ -67,17 +67,17 @@ void SonarPlugin::OnJointUpdate()
         this->jctrl->SetVelocityTarget(joint_name, this->velocity);
         this->WritePositionsRanges();
     } else {
-            std::vector<double> ranges(32);
-            this->sensor->Ranges(ranges);
+        std::vector<double> ranges(32);
+        this->sensor->Ranges(ranges);
 
-            double min_range = ranges[0];
-            for (double d : ranges)
-                if (d < min_range)
-                    min_range = d;
+        double min_range = ranges[0];
+        for (double d : ranges)
+            if (d < min_range)
+                min_range = d;
 
-            // This is to only store 3 digits of precision in pos.
-            this->ranges.push_back(min_range);
-            this->positions.push_back(current_pos);
+        // This is to only store 3 digits of precision in pos.
+        this->ranges.push_back(min_range);
+        this->positions.push_back(current_pos);
     }
 }
 

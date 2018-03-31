@@ -16,10 +16,10 @@ def moi_cylinder(r, h, mass):
 
 usage = '''\
 Usage: ./moi <type> <param>
-  
+
   type: cu, cube, cuboid
   param: x-length y-length z-length mass (origin at center)
-  
+
   type: cy, cyl, cylinder
   param: radius length mass (origin at center)
 '''
