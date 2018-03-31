@@ -85,7 +85,7 @@ void SonarPlugin::OnJointUpdate()
 // Write the ranges and positions to a file.
 inline void SonarPlugin::WritePositionsRanges() {
     unsigned int sz = this->positions.size();
-    
+
     if (sz > 10)
     {
         this->ranges_f.open(

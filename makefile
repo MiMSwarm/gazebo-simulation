@@ -32,7 +32,7 @@ $(SRCDIR)/%.o : $(SRCDIR)/%.cpp $(INCFILES)
 clean :
 	@echo -n "Cleaning $(LIBDIR) ..."; $(RM) -r $(LIBDIR)
 	@echo " done.";
-	@echo -n "Cleaning object files ..."; $(RM) -r $(SRCDIR)/%.o
+	@echo -n "Cleaning object files ..."; $(RM) -r $(SRCDIR)/*.o
 	@echo " done.";
 
 check :
