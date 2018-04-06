@@ -1,8 +1,24 @@
 <?xml version="1.0"?>
+
+<!--
+
+  Meet the MiMs.
+
+  The cool kids of the block, these guys are the
+  heart and soul of this project. Coordinate to
+  map out the Hood for search and rescue.
+
+-->
+
 <sdf version="1.6">
   <model name="minimapper">
 
-    <!-- Body of the MM -->
+
+    <!--
+      The Body of the MiM
+      -------------------
+    -->
+
     <link name="body">
 
       <pose>0 0 0.055 0 0 0</pose>
@@ -31,7 +47,12 @@
       </visual>
     </link>
 
-    <!-- Front Right Wheel of the MM and joint. -->
+
+    <!--
+      Front Right Wheel of the MiM
+      ----------------------------
+    -->
+
     <link name="wheel_fr">
       <pose>0.035 0.075 0.03 1.5708 0 0</pose>
       <inertial>
@@ -72,7 +93,12 @@
       </axis>
     </joint>
 
-    <!-- Front Left Wheel of the MM and joint. -->
+
+    <!--
+      Front Left Wheel of the MiM
+      ---------------------------
+    -->
+
     <link name="wheel_fl">
       <pose>0.035 -0.07 0.03 1.5708 0 0</pose>
       <inertial>
@@ -114,7 +140,11 @@
     </joint>
 
 
-    <!-- Rear Right Wheel of the MM and joint. -->
+    <!--
+      Rear Right Wheel of the MiM
+      ---------------------------
+    -->
+
     <link name="wheel_rr">
       <pose>-0.035 0.075 0.03 1.5708 0 0</pose>
       <inertial>
@@ -156,7 +186,11 @@
     </joint>
 
 
-    <!-- Rear Left Wheel of the MM and joint. -->
+    <!--
+      Rear Left Wheel of the MiM
+      ---------------------------
+    -->
+
     <link name="wheel_rl">
       <pose>-0.035 -0.07 0.03 1.5708 0 0</pose>
       <inertial>
@@ -196,18 +230,33 @@
         <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
-  
-  <!-- Ultrasonic Radar -->
-  <include>
-    <uri>model://sonar</uri>
-    <pose>0.04 0 0.095 0 0 0</pose>
-  </include>
 
-  <joint name="sonar_joint" type="fixed">
-    <pose>0.04 0 0.095 0 0 0</pose>
-    <parent>body</parent>
-    <child>sonar::shaft</child>
-  </joint>
+
+    <!--
+      The Visual System
+      -----------------
+    -->
+
+    <include>
+      <uri>model://vision</uri>
+      <pose>0.04 0 0.095 0 0 0</pose>
+    </include>
+
+    <joint name="neck_base_joint" type="fixed">
+      <pose>0.04 0 0.095 0 0 0</pose>
+      <parent>body</parent>
+      <child>sonar::shaft</child>
+    </joint>
+
+
+    <!--
+      MiM Control System
+      ------------------
+    -->
+
+    <plugin name="mim_control" filename="minimapper.so">
+    </plugin>
+
 
   </model>
 </sdf>

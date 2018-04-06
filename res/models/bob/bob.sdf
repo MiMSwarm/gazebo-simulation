@@ -1,4 +1,15 @@
 <?xml version="1.0"?>
+
+<!--
+
+  Meet the Bobs.
+
+  Absolutely useless models that do nothing but
+  sit there and act cool. Useful for constructing
+  point objects to test the SONAR.
+
+-->
+
 <sdf version="1.6">
   <model name="bob">
 

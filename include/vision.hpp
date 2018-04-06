@@ -2,13 +2,13 @@
  *  Plugin to control the sensor movement and data.
  */
 
+#include <algorithm>
 #include <fstream>
+#include <iostream>
+#include <limits>
 #include <list>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iostream>
-#include <limits>
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/common/common.hh>
@@ -18,10 +18,11 @@
 
 namespace gazebo {
     class SonarPlugin : public ModelPlugin {
-  
+
       public:
 
-        SonarPlugin() : ranges(2620, std::numeric_limits<double>::infinity()) {}
+        SonarPlugin() : ranges(
+          2620, std::numeric_limits<double>::infinity()) {}
 
         // Called by Gazebo when the model is loaded into the simulation.
         virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
@@ -32,6 +33,7 @@ namespace gazebo {
         // Write the ranges and positions to a file.
         void WritePositionsRanges();
 
+        // Returns a copy of the currently recorded ranges.
         std::vector<double> GetSonarRanges() const;
 
       private:

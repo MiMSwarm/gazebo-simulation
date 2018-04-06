@@ -1,9 +1,25 @@
 <?xml version="1.0"?>
-<sdf version="1.6">
-  <model name="sonar">
 
-    <!-- The Shaft of the Sonar. -->
-    <link name="shaft">
+<!--
+
+  Meet the Visions.
+
+  The visual system for a MiM. Can detect and
+  range objects within its visual cone. Allows
+  the MiM to "stick its neck out" for mapping.
+
+-->
+
+<sdf version="1.6">
+  <model name="vision">
+
+
+    <!--
+      The Neck of the Visual System
+      -----------------------------
+    -->
+
+    <link name="neck">
 
       <pose>0 0 0.025 0 0 0</pose>
       <inertial>
@@ -37,7 +53,12 @@
       </visual>
     </link>
 
-    <!-- The Head of the Sonar. -->
+
+    <!--
+      The Head of the Visual System
+      -----------------------------
+    -->
+
     <link name="head">
 
       <pose>0 0 0.060 0 0 0</pose>
@@ -66,8 +87,15 @@
       </visual>
     </link>
 
-    <!-- Joint -->
-    <joint name="neck_joint" type="revolute">
+
+    <!--
+      The Top Joint of the Neck
+      -------------------------
+
+      The bottom is attached to the MiM.
+    -->
+
+    <joint name="neck_top_joint" type="revolute">
 
       <pose>0 0 -0.01 0 0 0</pose>
       <parent>shaft</parent>
@@ -83,7 +111,15 @@
       </axis>
     </joint>
 
-    <!-- Left Eye. The reciever for US sensor is on this eye. -->
+
+    <!--
+      The Left Eye
+      ------------
+
+      The reciever for Ultrasonic sensor is on
+      this eye.
+    -->
+
     <link name="eye_left">
 
       <pose>0.0275 0.015 0.06 0 1.5708 3.1416</pose>
@@ -117,7 +153,9 @@
         </geometry>
       </visual>
 
-      <!-- The actual ultrasonic sensor -->
+      <!--
+        A Ray sensor acting as an Ultrasonic sensor.
+      -->
       <sensor name="sonar_sensor" type="ray">
         <pose>0 0 0 0 1.5708 0</pose>
         <always_on>1</always_on>
@@ -139,18 +177,26 @@
             <max>5.00</max>
             <resolution>0.02</resolution>
           </range>
-        </ray>        
+        </ray>
 
       </sensor>
     </link>
 
-    <!-- Fix the Eye to the Sonar Head. -->
+    <!--
+      Fix the Eye to the Head.
+    -->
     <joint name="eye_left_joint" type="fixed">
       <parent>head</parent>
       <child>eye_left</child>
     </joint>
 
-    <!-- Right Eye -->
+
+    <!--
+      The Right Eye
+      -------------
+
+      Simply for aesthetics.
+    -->
     <link name="eye_right">
 
       <pose>0.0275 -0.015 0.06 0 1.5708 0</pose>
@@ -183,14 +229,21 @@
       </visual>
     </link>
 
-    <!-- Fix the Eye to the Sonar Head. -->
+    <!--
+      Fix the Eye to the Head.
+    -->
     <joint name="eye_right_joint" type="fixed">
       <parent>head</parent>
       <child>eye_right</child>
     </joint>
 
-    <!-- Plugin to Control Head Movement. -->
-    <plugin name="sonar_control" filename="sonar.so">
+
+    <!--
+      Vision Control System
+      ---------------------
+    -->
+
+    <plugin name="vison_control" filename="vision.so">
       <velocity>0.5</velocity>
       <pid>
         <p>0.005</p>
@@ -198,6 +251,7 @@
         <d>0</d>
       </pid>
     </plugin>
+
 
   </model>
 </sdf>

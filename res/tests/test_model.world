@@ -2,7 +2,7 @@
 
 <!-- To test a single robot -->
 <sdf version="1.6">
-  <world name="sonar_check">
+  <world name="test_model">
 
     <!-- A global light source -->
     <include>
@@ -16,11 +16,8 @@
 
     <!-- Cool robots -->
     <include>
-      <name>Clapton</name>
       <uri>model://minimapper</uri>
     </include>
-
-    <!-- A few obstacles -->
 
   </world>
 </sdf>

@@ -2,7 +2,7 @@
  *  Plugin to control the sensor movement and data.
  */
 
-#include "sonar.hpp"
+#include "vision.hpp"
 
 using namespace gazebo;
 

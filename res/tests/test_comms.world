@@ -2,7 +2,7 @@
 
 <!-- To test a single robot -->
 <sdf version="1.6">
-  <world name="model_setup">
+  <world name="test_comms">
 
     <!-- A global light source -->
     <include>
@@ -16,7 +16,15 @@
 
     <!-- Cool robots -->
     <include>
+      <name>Simon</name>
       <uri>model://minimapper</uri>
+      <pose>0 -1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>Garfunkel</name>
+      <uri>model://minimapper</uri>
+      <pose>0 1 0 0 0 0</pose>
     </include>
 
   </world>

@@ -1,5 +1,5 @@
 # TODO: Make stuff work.
- 
+
 # CC = clang++
 CC = g++
 
@@ -14,11 +14,11 @@ LFLAGS = -shared -Lsrc/ $(shell pkg-config --libs gazebo)
 # Find required files.
 SRCFILES = $(wildcard $(SRCDIR)/*)
 INCFILES = $(wildcard $(INCDIR)/*)
-LIBFILES = $(LIBDIR)/sonar.so
+LIBFILES = $(LIBDIR)/vision.so
 
 all : $(LIBFILES)
 
-$(LIBDIR)/sonar.so : $(SRCDIR)/sonar.o
+$(LIBDIR)/vision.so : $(SRCDIR)/vision.o
 	@mkdir -p $(LIBDIR)
 	@echo -n "Building $@ ... "; $(CC) $< -o $@ $(LFLAGS)
 	@echo "done.";
