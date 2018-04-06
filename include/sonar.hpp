@@ -6,6 +6,9 @@
 #include <list>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
+#include <limits>
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/common/common.hh>
@@ -18,6 +21,8 @@ namespace gazebo {
   
       public:
 
+        SonarPlugin() : ranges(2620, std::numeric_limits<double>::infinity()) {}
+
         // Called by Gazebo when the model is loaded into the simulation.
         virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
@@ -27,7 +32,6 @@ namespace gazebo {
         // Write the ranges and positions to a file.
         void WritePositionsRanges();
 
-        std::vector<double> GetSonarPositions() const;
         std::vector<double> GetSonarRanges() const;
 
       private:
@@ -45,8 +49,7 @@ namespace gazebo {
 
         // For sensor monitoring.
         std::ofstream ranges_f;
-        std::list<double> positions;
-        std::list<double> ranges;
+        std::vector<double> ranges;
         sensors::RaySensorPtr sensor;
 
     };

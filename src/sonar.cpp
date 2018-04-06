@@ -69,57 +69,36 @@ void SonarPlugin::OnJointUpdate()
     } else {
         std::vector<double> ranges(32);
         this->sensor->Ranges(ranges);
-
-        double min_range = ranges[0];
-        for (double d : ranges)
-            if (d < min_range)
-                min_range = d;
+        auto min_it = std::min_element(std::begin(ranges), std::end(ranges));
 
         // This is to only store 3 digits of precision in pos.
-        this->ranges.push_back(min_range);
-        this->positions.push_back(current_pos);
+        uint curr_i = round(current_pos * 1000) + 1309;
+        this->ranges[curr_i] = *min_it;
     }
 }
 
 
 // Write the ranges and positions to a file.
 inline void SonarPlugin::WritePositionsRanges() {
-    unsigned int sz = this->positions.size();
+    uint sz = this->ranges.size();
+    if (sz < 10) return;
 
-    if (sz > 10)
-    {
-        this->ranges_f.open(
-            "res/data/" + this->model->GetName() + "_ranges.csv");
+    this->ranges_f.open(
+        "res/data/" + this->model->GetName() + "_ranges.csv");
 
-        auto pos_it = this->positions.begin();
-        auto rng_it = this->ranges.begin();
-        for (; pos_it != this->positions.end(); pos_it++, rng_it++)
-            this->ranges_f << *pos_it << "," << *rng_it << std::endl;
-        
-        this->ranges_f.close();
-        this->ranges.clear();
-        this->positions.clear();
-    }
+    for (uint pos = 0; pos != sz; ++pos)
+        this->ranges_f << (static_cast<int>(pos) - 1309) / 1000.0 << ", " <<
+            this->ranges[pos] << std::endl;
 
+    this->ranges_f.close();
 }
 
 
 // Get a copy of the positions vector.
-inline std::vector<double> SonarPlugin::GetSonarPositions() const
-{
-    std::vector<double> v;
-    v.reserve(this->positions.size());
-    std::copy(std::begin(this->positions), std::end(this->positions),
-              std::back_inserter(v));
-    return v;
-}
-
-
-// Get a copy of the ranges vector.
 inline std::vector<double> SonarPlugin::GetSonarRanges() const
 {
     std::vector<double> v;
-    v.reserve(this->positions.size());
+    v.reserve(this->ranges.size());
     std::copy(std::begin(this->ranges), std::end(this->ranges),
               std::back_inserter(v));
     return v;
