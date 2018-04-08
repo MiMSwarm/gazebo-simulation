@@ -82,6 +82,22 @@ void VisionPlugin::OnJointUpdate()
 }
 
 
+// Write the ranges and positions to a file.
+inline void VisionPlugin::WritePositionsRanges() {
+    uint sz = this->ranges.size();
+    if (sz < 10) return;
+
+    this->ranges_f.open(
+        "res/data/" + this->model->GetName() + "_ranges.csv");
+
+    for (uint pos = 0; pos != sz; ++pos)
+        this->ranges_f << (static_cast<int>(pos) - 1309) / 1000.0 << ", " <<
+            this->ranges[pos] << std::endl;
+
+    this->ranges_f.close();
+}
+
+
 // Get a copy of the positions vector.
 inline std::vector<double> VisionPlugin::GetSonarRanges() const
 {

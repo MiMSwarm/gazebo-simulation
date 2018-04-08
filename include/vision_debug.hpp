@@ -43,6 +43,9 @@ namespace gazebo {
         /** @brief Called each time the neck joint updates. */
         void OnJointUpdate();
 
+        /** @brief Write the ranges and positions to a file. */
+        void WritePositionsRanges();
+
         /** @brief Returns a copy of the currently recorded ranges. */
         std::vector<double> GetSonarRanges() const;
 

@@ -8,17 +8,25 @@ INCDIR = include
 LIBDIR = lib
 
 # Compile for shared library.
-CFLAGS = -c -fPIC -Wall -Iinclude/ $(shell pkg-config --cflags gazebo)
-LFLAGS = -shared -Lsrc/ $(shell pkg-config --libs gazebo)
+CFLAGS = -c -fPIC -Wall -I$(INCDIR)/ $(shell pkg-config --cflags gazebo)
+LFLAGS = -shared -L$(SRCDIR)/ $(shell pkg-config --libs gazebo)
 
-# Find required files.
-SRCFILES = $(wildcard $(SRCDIR)/*)
-INCFILES = $(wildcard $(INCDIR)/*)
-LIBFILES = $(LIBDIR)/vision.so
+# Plugins
+VISSRC = vision					# Files to consider when building vision.
+MIMSRC = minimapper				# Files to consider when building minimapper.
 
-all : $(LIBFILES)
+PLUGINS = $(LIBDIR)/vision.so
+# PLUGINS = $(LIBDIR)/vision.so $(LIBDIR)/minimapper.so
 
-$(LIBDIR)/vision.so : $(SRCDIR)/vision.o
+# Make targets
+all : $(PLUGINS)
+
+# Uses vision_debug instead of vision for the plugin.
+model_check : VISSRC = vision_debug
+model_check : $(LIBDIR)/vision.so
+
+# Builds the vision plugin.
+$(LIBDIR)/vision.so : $(SRCDIR)/$(VISSRC).o
 	@mkdir -p $(LIBDIR)
 	@echo -n "Building $@ ... "; $(CC) $< -o $@ $(LFLAGS)
 	@echo "done.";
@@ -35,13 +43,4 @@ clean :
 	@echo -n "Cleaning object files ..."; $(RM) -r $(SRCDIR)/*.o
 	@echo " done.";
 
-check :
-	@echo "Plugin src dir: $(SRCDIR)"
-	@echo "Plugin inc dir: $(INCDIR)"
-	@echo "Plugin lib dir: $(LIBDIR)"
-
-	@echo "Plugin src files: $(SRCFILES)"
-	@echo "Plugin inc files: $(INCFILES)"
-	@echo "Plugin lib files: $(LIBFILES)"
-
-.PHONY : all clean check
+.PHONY : all model_check clean
