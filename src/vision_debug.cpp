@@ -16,7 +16,7 @@ void VisionPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
     // Initialize the model and joint.
     this->model = _model;
-    this->joint = _model->GetJoint("sonar::neck_joint");
+    this->joint = _model->GetJoint("vision::neck_top_joint");
     this->jctrl = _model->GetJointController();
 
     // Initialize a few parameters from the SDF.

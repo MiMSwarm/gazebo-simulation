@@ -6,7 +6,7 @@
  *
  */
 
-#include "vision_debug.hpp"
+#include "vision.hpp"
 
 using namespace gazebo;
 
@@ -64,13 +64,13 @@ void VisionPlugin::OnJointUpdate()
     std::string joint_name = this->joint->GetScopedName();
 
     // If the position crosses the limit, flip velocity.
-    if (current_pos > this->upper_limit) {
+    if (current_pos > this->upper_limit)
         this->jctrl->SetVelocityTarget(joint_name, -this->velocity);
-        this->WritePositionsRanges();
-    } else if (current_pos < this->lower_limit) {
+
+    else if (current_pos < this->lower_limit)
         this->jctrl->SetVelocityTarget(joint_name, this->velocity);
-        this->WritePositionsRanges();
-    } else {
+
+    else {
         std::vector<double> ranges(32);
         this->sensor->Ranges(ranges);
         auto min_it = std::min_element(std::begin(ranges), std::end(ranges));

@@ -245,7 +245,7 @@
     <joint name="neck_base_joint" type="fixed">
       <pose>0.04 0 0.095 0 0 0</pose>
       <parent>body</parent>
-      <child>sonar::shaft</child>
+      <child>vision::neck</child>
     </joint>
 
 

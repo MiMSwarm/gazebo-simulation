@@ -34,7 +34,7 @@
         </inertia>
       </inertial>
 
-      <collision name="shaft_collision">
+      <collision name="neck_collision">
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -43,7 +43,7 @@
         </geometry>
       </collision>
 
-      <visual name="shaft_visual">
+      <visual name="neck_visual">
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -98,7 +98,7 @@
     <joint name="neck_top_joint" type="revolute">
 
       <pose>0 0 -0.01 0 0 0</pose>
-      <parent>shaft</parent>
+      <parent>neck</parent>
       <child>head</child>
 
       <axis>
