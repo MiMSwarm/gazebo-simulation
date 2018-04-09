@@ -34,13 +34,13 @@
         </inertia>
       </inertial>
 
-      <collision name="body_collision">
+      <collision name="body_col">
         <geometry>
           <box><size>0.16 0.12 0.08</size></box>
         </geometry>
       </collision>
 
-      <visual name="body_visual">
+      <visual name="body_vis">
         <geometry>
           <box><size>0.16 0.12 0.08</size></box>
         </geometry>
@@ -66,7 +66,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="wheel_fr_collision">
+      <collision name="wheel_fr_col">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -74,7 +74,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="wheel_fr_visual">
+      <visual name="wheel_fr_vis">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -112,7 +112,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="wheel_fl_collision">
+      <collision name="wheel_fl_col">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -120,7 +120,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="wheel_fl_visual">
+      <visual name="wheel_fl_vis">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -158,7 +158,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="wheel_rr_collision">
+      <collision name="wheel_rr_col">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -166,7 +166,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="wheel_rr_visual">
+      <visual name="wheel_rr_vis">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -204,7 +204,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="wheel_rl_collision">
+      <collision name="wheel_rl_col">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -212,7 +212,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="wheel_rl_visual">
+      <visual name="wheel_rl_vis">
         <geometry>
           <cylinder>
             <radius>0.03</radius>
@@ -233,7 +233,7 @@
 
 
     <!--
-      The Visual System
+      MiM Visual System
       -----------------
     -->
 
@@ -254,8 +254,31 @@
       ------------------
     -->
 
-    <plugin name="mim_control" filename="minimapper.so">
-    </plugin>
+    <!-- <plugin name="mim_control" filename="minimapper.so">
+    </plugin> -->
+
+
+    <!--
+      MiM Gossip System
+      -----------------
+    -->
+
+    <include>
+      <uri>model://gossip</uri>
+      <pose>-0.04 0 0.095 0 0 0</pose>
+    </include>
+
+    <joint name="speaker_joint" type="fixed">
+      <pose>-0.04 -0.005 0.095 0 0 0</pose>
+      <parent>body</parent>
+      <child>gossip::speaker</child>
+    </joint>
+
+    <joint name="listener_joint" type="fixed">
+      <pose>-0.04 -0.005 0.095 0 0 0</pose>
+      <parent>body</parent>
+      <child>gossip::listener</child>
+    </joint>
 
 
   </model>

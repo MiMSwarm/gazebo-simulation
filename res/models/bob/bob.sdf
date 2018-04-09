@@ -20,7 +20,7 @@
 
       <pose>0 0 0.06 0 0 0</pose>
 
-      <collision name="shaft_collision">
+      <collision name="shaft_col">
         <geometry>
           <cylinder>
             <radius>0.01</radius>
@@ -29,7 +29,7 @@
         </geometry>
       </collision>
 
-      <visual name="shaft_visual">
+      <visual name="shaft_vis">
         <geometry>
           <cylinder>
             <radius>0.01</radius>
@@ -44,13 +44,13 @@
 
       <pose>0 0 0.14 0 0 0</pose>
 
-      <collision name="ball_collision">
+      <collision name="ball_col">
         <geometry>
           <sphere><radius>0.03</radius></sphere>
         </geometry>
       </collision>
 
-      <visual name="ball_visual">
+      <visual name="ball_vis">
         <geometry>
           <sphere><radius>0.03</radius></sphere>
         </geometry>

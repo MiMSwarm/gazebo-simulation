@@ -12,7 +12,7 @@ from tools import update_environ
 
 help_text = """
 Usage: ./simulate.py <world-name> [-h] [--help] [-q] [--quiet]
-                     [-s] [--single] [-c] [--client]
+                     [-m] [--multiple] [-c] [--client]
 Set up environment and run gazebo server and (optionally) client.
 
     <world-name>
@@ -23,7 +23,7 @@ Set up environment and run gazebo server and (optionally) client.
 
 OPTIONAL ARGUMENTS:
     -q --quiet      Silence output.
-    -s --single     Do not attempt to restart Gazebo Client.
+    -m --multiple   Restartable Gazebo Client.
     -c --client     Run Gazebo Client.
     -h --help       Display help and exit.
 """
@@ -33,15 +33,15 @@ def parse_args():
     """Parse command line arguments."""
     args_to_pass = ['--verbose']
     launch_client = False
-    single_launch = False
+    single_launch = True
 
     for arg in sys.argv[1:]:
         if arg in ['-q', '--quiet']:
             args_to_pass.remove('--verbose')
         elif arg in ['-c', '--client']:
             launch_client = True
-        elif arg in ['-s', '--single']:
-            single_launch = True
+        elif arg in ['-m', '--multiple']:
+            single_launch = False
         elif arg in ['-h', '--help']:
             print(help_text)
             sys.exit(0)

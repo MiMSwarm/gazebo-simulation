@@ -34,7 +34,7 @@
         </inertia>
       </inertial>
 
-      <collision name="neck_collision">
+      <collision name="neck_col">
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -43,7 +43,7 @@
         </geometry>
       </collision>
 
-      <visual name="neck_visual">
+      <visual name="neck_vis">
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -74,13 +74,13 @@
         </inertia>
       </inertial>
 
-      <collision name="head_collision">
+      <collision name="head_col">
         <geometry>
           <box><size>0.04 0.06 0.02</size></box>
         </geometry>
       </collision>
 
-      <visual name="head_visual">
+      <visual name="head_vis">
         <geometry>
           <box><size>0.04 0.06 0.02</size></box>
         </geometry>
@@ -135,7 +135,7 @@
         </inertia>
       </inertial>
 
-      <collision name="eye_left_collision">
+      <collision name="eye_left_col">
         <geometry>
           <cylinder>
             <radius>0.010</radius>
@@ -144,7 +144,7 @@
         </geometry>
       </collision>
 
-      <visual name="eye_left_visual">
+      <visual name="eye_left_vis">
         <geometry>
           <cylinder>
             <radius>0.010</radius>
@@ -211,7 +211,7 @@
           <ixz>0</ixz>
         </inertia>
       </inertial>
-      <collision name="eye_right_collision">
+      <collision name="eye_right_col">
         <geometry>
           <cylinder>
             <radius>0.010</radius>
@@ -219,7 +219,7 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name="eye_right_visual">
+      <visual name="eye_right_vis">
         <geometry>
           <cylinder>
             <radius>0.010</radius>

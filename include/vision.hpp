@@ -6,11 +6,11 @@
  *
  */
 
+#pragma once
+
 #include <algorithm>
 #include <fstream>
-#include <iostream>
 #include <limits>
-#include <list>
 #include <string>
 #include <vector>
 

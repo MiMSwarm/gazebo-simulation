@@ -2,7 +2,7 @@
 
 <!-- To test a single robot -->
 <sdf version="1.6">
-  <world name="test_motion">
+  <world name="test_sweep">
 
     <!-- A global light source -->
     <include>
