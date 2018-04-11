@@ -11,3 +11,7 @@ build/
 
 # Node.
 node_modules/
+
+# Python
+pycache/
+*.pyc
