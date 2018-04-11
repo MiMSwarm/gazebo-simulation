@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<!--
+
+  Meet the Bobs.
+
+  Absolutely useless models that do nothing but
+  sit there and act cool. Useful for constructing
+  point objects to test the SONAR.
+
+-->
+
+<sdf version="1.6">
+  <model name="bob">
+
+    <static>true</static>
+
+    <!-- The Shaft of the Bob. -->
+    <link name="shaft">
+
+      <pose>0 0 0.06 0 0 0</pose>
+
+      <collision name="shaft_col">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.12</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="shaft_vis">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.12</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- The Ball of the Bob. -->
+    <link name="ball">
+
+      <pose>0 0 0.14 0 0 0</pose>
+
+      <collision name="ball_col">
+        <geometry>
+          <sphere><radius>0.03</radius></sphere>
+        </geometry>
+      </collision>
+
+      <visual name="ball_vis">
+        <geometry>
+          <sphere><radius>0.03</radius></sphere>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Joint -->
+    <joint name="joint" type="fixed">
+      <parent>shaft</parent>
+      <child>ball</child>
+    </joint>
+
+  </model>
+</sdf>

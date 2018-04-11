@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="icy_interior">
+
+    <static>true</static>
+
+    <!-- Wall A. -->
+    <link name="A">
+      <pose>3.75 3 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="a_col">
+        <geometry>
+          <box>
+            <size>2.5 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="a_vis">
+        <geometry>
+          <box>
+            <size>2.5 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall B. -->
+    <link name="B">
+      <pose>3.75 -3 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="b_col">
+        <geometry>
+          <box>
+            <size>2.5 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="b_vis">
+        <geometry>
+          <box>
+            <size>2.5 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall C. (y is not exactly 2.5 to offset for the wall width) -->
+    <link name="C">
+      <pose>2.5 2.525 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="c_col">
+        <geometry>
+          <box>
+            <size>0.1 1.05 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="c_vis">
+        <geometry>
+          <box>
+            <size>0.1 1.05 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall D. (y is not exactly 2.5 to offset for the wall width) -->
+    <link name="D">
+      <pose>2.5 -2.525 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="d_col">
+        <geometry>
+          <box>
+            <size>0.1 1.05 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="d_vis">
+        <geometry>
+          <box>
+            <size>0.1 1.05 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Cylinder E. -->
+    <link name="E">
+      <pose>0 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="e_col">
+        <geometry>
+          <cylinder>
+            <radius>1.25</radius>
+            <length>2</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="e_vis">
+        <geometry>
+          <cylinder>
+            <radius>1.25</radius>
+            <length>2</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall F. -->
+    <link name="F">
+      <pose>-0.5 4 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>7 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>7 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall G. -->
+    <link name="G">
+      <pose>-0.5 -4 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>7 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>7 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Wall H. -->
+    <link name="H">
+      <pose>-4 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="f_col">
+        <geometry>
+          <box>
+            <size>0.1 8.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="f_vis">
+        <geometry>
+          <box>
+            <size>0.1 8.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Block I. -->
+    <link name="I">
+      <pose>4.25 -1.5 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="i_col">
+        <geometry>
+          <box>
+            <size>1.5 1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="i_vis">
+        <geometry>
+          <box>
+            <size>1.5 1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 1 -->
+    <link name="R1">
+      <pose>-0.95 4.45 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r1_col">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r1_vis">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 2 -->
+    <link name="R2">
+      <pose>-0.95 -4.45 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r2_col">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r2_vis">
+        <geometry>
+          <box>
+            <size>8.1 1.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Roof 3 -->
+    <link name="R3">
+      <pose>-4.45 0 1.95 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="r3_col">
+        <geometry>
+          <box>
+            <size>1.1 8.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="r3_vis">
+        <geometry>
+          <box>
+            <size>1.1 8.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.811765 0.929412 0.945098 0.85</ambient>
+          <diffuse>0.811765 0.929412 0.945098 0.85</diffuse>
+          <specular>0.3 0.3 0.3 0.85</specular>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>

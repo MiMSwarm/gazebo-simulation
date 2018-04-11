@@ -1,0 +1,179 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="icy_exterior">
+
+    <static>true</static>
+
+    <link name="floor">
+      <collision name="floor_col">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>10 10</size>
+          </plane>
+        </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>0xffff</collide_bitmask>
+          </contact>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="floor_vis">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>10 10</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+        <!-- Left Wall. -->
+    <link name="wall_left">
+      <pose>0 -4.95 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="left_collision">
+        <geometry>
+          <box>
+            <size>10 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="left_visual">
+        <geometry>
+          <box>
+            <size>10 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Right wall. -->
+    <link name="wall_right">
+      <pose>0 4.95 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="right_collision">
+        <geometry>
+          <box>
+            <size>10 0.1 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="right_visual">
+        <geometry>
+          <box>
+            <size>10 0.1 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Back wall. -->
+    <link name="wall_back">
+      <pose>-4.95 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="back_collision">
+        <geometry>
+          <box>
+            <size>0.1 10 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="back_visual">
+        <geometry>
+          <box>
+            <size>0.1 10 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Front wall, left half -->
+    <link name="wall_front_left">
+      <pose>4.95 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="front_left_collision">
+        <pose>0 -3 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 4 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="front_left_visual">
+        <pose>0 -3 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 4 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Front wall, right half -->
+    <link name="wall_front_right">
+      <pose>4.95 0 1 0 0 0</pose>
+      <must_be_base_link>true</must_be_base_link>
+      <collision name="front_right_collision">
+        <pose>0 3 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 4 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="front_right_visual">
+        <pose>0 3 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 4 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/icy.material</uri>
+            <name>Ice</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>
