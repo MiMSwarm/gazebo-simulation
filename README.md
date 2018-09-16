@@ -1,6 +1,6 @@
 # MiniMappers
 
-**Final Year Computer Science Project**  
+**Final Year Computer Science Project**
 A SLAM implementation using Swarm Robotics for search and rescue.
 
 
@@ -25,10 +25,10 @@ To test the simulations, you'll need to build the plugins. So first run,
 $ make
 ```
 
-Once the plugins have built, ensure `simulate.sh` has execute permissions and then run the script. Pass the world to render as the argument without `.world`.
+Once the plugins have built, ensure `simulate.py` has execute permissions and then run the script. Pass the world to render as the argument without `.world`.
 ```sh
-$ chmod u+x simulate.sh
-$ ./simulate.sh model_setup_test
+$ chmod u+x ./scripts/simulate.sh
+$ ./scripts/simulate.sh model_setup_test
 ```
 
 The simulator should shut down after closing the Gazebo client (GUI). If the gazebo server isn't shutting down. Press `ctrl-c` to send the `SIGINT` signal to the server. To check if the server has shut down, run
